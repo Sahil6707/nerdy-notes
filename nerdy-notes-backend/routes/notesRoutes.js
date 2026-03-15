@@ -17,34 +17,37 @@ router.post(
   upload.single("pdf"),
   async (req, res) => {
     try {
-  const { title, subject, year, module, type } = req.body;
 
-const fileUrl = req.file.path;   // FIX: define the variable
+      if (!req.file) {
+        return res.status(400).json({ message: "No file uploaded" });
+      }
 
-const note = new Note({
-  title,
-  subject,
-  fileUrl,
-  year,
-  module,
-  isPremium: type === "premium",
-  uploadedBy: req.user.id,
-});
+      const { title, subject, year, module, type } = req.body;
+
+      const fileUrl = req.file.path;
+
+      const note = new Note({
+        title,
+        subject,
+        fileUrl,
+        year,
+        module,
+        isPremium: type === "premium",
+        uploadedBy: req.user.id,
+      });
+
       await note.save();
 
       res.json({
         message: "Note uploaded successfully",
         note,
       });
+
     } catch (error) {
       console.error("Upload error:", error);
-
-      res.status(500).json({
-        message: "Upload failed",
-      });
+      res.status(500).json({ message: "Upload failed" });
     }
-    console.log(req.file);
-  },
+  }
 );
 
 router.get("/premium", authMiddleware, async (req, res) => {
@@ -111,33 +114,20 @@ router.get("/hello", (req, res) => {
 // Delete note
 router.delete("/:id", authMiddleware, async (req, res) => {
   try {
+
     const note = await Note.findById(req.params.id);
 
     if (!note) {
-      return res.status(404).json({
-        message: "Note not found",
-      });
+      return res.status(404).json({ message: "Note not found" });
     }
 
-    // delete file from uploads folder
-    const filePath = path.join(__dirname, "..", note.fileUrl);
-
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
-    }
-
-    // delete from database
     await Note.findByIdAndDelete(req.params.id);
 
-    res.json({
-      message: "Note deleted successfully",
-    });
+    res.json({ message: "Note deleted successfully" });
+
   } catch (error) {
     console.error(error);
-
-    res.status(500).json({
-      message: "Delete failed",
-    });
+    res.status(500).json({ message: "Delete failed" });
   }
 });
 
