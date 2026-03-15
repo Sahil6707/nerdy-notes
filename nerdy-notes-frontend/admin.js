@@ -144,7 +144,9 @@ alert("File not found");
 return;
 }
 
-// open cloudinary link directly
-window.open(fileUrl, "_blank");
+// force browser PDF viewer
+const previewUrl = fileUrl.replace("/upload/", "/upload/fl_inline/");
+
+window.open(previewUrl, "_blank");
 
 }
