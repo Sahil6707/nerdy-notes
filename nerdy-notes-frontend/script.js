@@ -176,9 +176,6 @@ async function loadNotes() {
 
   const token = localStorage.getItem("token");
 
-  // FIX: convert Cloudinary image URL to raw PDF URL
-  const fileUrl = note.fileUrl.replace("/image/upload/", "/raw/upload/");
-
   card.innerHTML = `
 <h3>${note.title}</h3>
 <p>${note.subject}</p>
@@ -189,9 +186,9 @@ ${
   note.isPremium
     ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
     : token
-      ? `<a target="_blank" class="download-btn" href="${fileUrl}" download>Download</a>`
+      ? `<a target="_blank" class="download-btn" href="${note.fileUrl}">Download</a>`
       : `
-      <a class="preview-btn" href="${fileUrl}" target="_blank">Preview</a>
+      <a class="preview-btn" href="${note.fileUrl}" target="_blank">Preview</a>
       <a class="login-btn" href="login.html">Login</a>
       `
 }
