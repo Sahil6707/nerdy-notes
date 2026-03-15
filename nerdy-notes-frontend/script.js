@@ -186,7 +186,7 @@ ${
     : token
       ? `<a target="_blank" class="download-btn" href="https://nerdy-notes-backend.onrender.com${note.fileUrl}" download>Download</a>`
       : `
-      <a class="preview-btn" href="../preview.html?file=${note.fileUrl}" target="_blank">Preview</a>
+      <a class="preview-btn" href="/preview.html?file=${note.fileUrl}" target="_blank">Preview</a>
       <a class="login-btn" href="login.html">Login</a>
       `
 }
@@ -212,26 +212,9 @@ if (userData && userData.role === "admin") {
   }
 }
 
-//animations
-
-document.querySelectorAll(".note-card").forEach(card => {
-
-card.addEventListener("click", function(e){
-
-const link = this.getAttribute("href");
-
-if(!link) return;
-
-e.preventDefault();
-
-this.classList.add("tap");
-
-setTimeout(()=>{
-window.location.href = link;
-},120);
-
-});
-
-});
 
 
+if(!res.ok){
+console.error("API error");
+return;
+}
