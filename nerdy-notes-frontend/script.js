@@ -213,8 +213,3 @@ if (userData && userData.role === "admin") {
 }
 
 
-
-if(!res.ok){
-console.error("API error");
-return;
-}
