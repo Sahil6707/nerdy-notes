@@ -17,19 +17,19 @@ router.post(
   upload.single("pdf"),
   async (req, res) => {
     try {
-      const { title, subject, year, module, type } = req.body;
+  const { title, subject, year, module, type } = req.body;
 
-      const fileUrl = `/uploads/${req.file.filename}`;
+const fileUrl = req.file.path;   // FIX: define the variable
 
-      const note = new Note({
-        title,
-        subject,
-        fileUrl,
-        year,
-        module,
-        isPremium: type === "premium",
-        uploadedBy: req.user.id,
-      });
+const note = new Note({
+  title,
+  subject,
+  fileUrl,
+  year,
+  module,
+  isPremium: type === "premium",
+  uploadedBy: req.user.id,
+});
       await note.save();
 
       res.json({
@@ -37,7 +37,7 @@ router.post(
         note,
       });
     } catch (error) {
-      console.log(error);
+      console.error("Upload error:", error);
 
       res.status(500).json({
         message: "Upload failed",
