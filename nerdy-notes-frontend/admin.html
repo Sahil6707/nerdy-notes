@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Admin Panel - Nerdy Notes</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/The-Logo.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/admin.css" />
+  </head>
+
+  <body>
+    <div class="admin-container">
+      <h2>Upload Notes</h2>
+
+      <form id="uploadForm">
+        <input type="text" id="title" placeholder="Note Title" required />
+
+        <select id="subject" name="subject">
+
+<option value="math">Engineering Mathematics</option>
+<option value="physics">Engineering Physics</option>
+<option value="mechanics">Engineering Mechanics</option>
+<option value="chemistry">Engineering Chemistry</option>
+<option value="electrical">Basic Electrical Engineering</option>
+<option value="english">English and Communication Skills</option>
+<option value="cp">Computer Programming</option>
+<option value="ed">Engineering Drawing</option>
+<option value="eme">Elements of Mechanical Engineering</option>
+<option value="evs">Environmental Studies</option>
+<option value="workshop">Workshop</option>
+
+</select>
+
+        <select id="year" required>
+          <option value="">Select Year</option>
+
+          <option value="1">1st Year</option>
+          <option value="2">2nd Year</option>
+          <option value="3">3rd Year</option>
+          <option value="4">4th Year</option>
+        </select>
+
+        <select id="module" required>
+          <option value="">Select Module</option>
+
+          <option value="1">Module 1</option>
+          <option value="2">Module 2</option>
+          <option value="3">Module 3</option>
+          <option value="4">Module 4</option>
+          <option value="5">Module 5</option>
+          <option value="2">Module 6</option>
+          <option value="3">Module 7</option>
+          <option value="4">Module 8</option>
+          <option value="5">Module 9</option>
+        </select>
+
+        <select id="type">
+          <option value="free">Free</option>
+          <option value="premium">Premium</option>
+        </select>
+
+        <input type="file" id="pdfFile" required />
+
+        <button id="uploadNote" type="submit">Upload Note</button>
+      </form>
+
+      <h2 class="notes-title">Uploaded Notes</h2>
+
+      <div class="admin-filters">
+        <select id="filterSubject">
+          <option value="">All Subjects</option>
+          <option value="math">Mathematics</option>
+          <option value="physics">Physics</option>
+          <option value="cp">Computer Programming</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="english">English</option>
+          <option value="ed">Engineering Drawing</option>
+          <option value="eme">Elements of Mechanical Engineering</option>
+          <option value="evs">Environmental Studies</option>
+          <option value="mechanics">Mechanics</option>
+          <option value="workshop">Workshop</option>
+          <option value="electrical">Basic Electrical Engineering</option>
+        </select>
+
+        <select id="filterYear">
+          <option value="">All Years</option>
+          <option value="1">Year 1</option>
+          <option value="2">Year 2</option>
+          <option value="3">Year 3</option>
+          <option value="4">Year 4</option>
+        </select>
+      </div>
+
+      <div id="notesList" class="notes-list">Loading notes...</div>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,437 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Nerdy Notes - Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #0f172a, #1e293b, #020617);
+        color: white;
+        opacity: 0;
+        animation: pageLoad 0.6s ease forwards;
+      }
+
+      @keyframes pageLoad {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* animated gradient glow */
+      body::before {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, #3b82f6, transparent);
+        filter: blur(120px);
+        top: -150px;
+        left: -150px;
+        opacity: 0.5;
+      }
+
+      /* login card */
+      .login-card {
+        position: relative;
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 45px;
+        border-radius: 16px;
+        width: 380px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        transition: 0.3s;
+        animation: cardEnter 0.8s ease;
+        max-width: 380px;
+        width: 90%;
+      }
+
+      @keyframes cardEnter {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .login-card:hover {
+        transform: translateY(-6px);
+      }
+
+      /* title */
+      .login-card h2 {
+        font-size: 32px;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+      }
+
+      /* inputs */
+      .input-field {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 12px;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        outline: none;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .input-field:focus {
+        box-shadow: 0 0 0 2px #3b82f6;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .input-field::placeholder {
+        color: #94a3b8;
+      }
+
+      /* login button */
+      .login-btn {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #3b82f6, #2563eb);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.25s;
+        margin-bottom: 10px;
+      }
+
+      .login-btn:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+      }
+
+      /* continue button */
+      .skip-btn {
+        margin-top: 16px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #cbd5f5;
+        padding: 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.25s;
+        width: 100%;
+      }
+
+      .skip-btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid #3b82f6;
+        color: white;
+      }
+
+      @keyframes cardEnter {
+        0% {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .login-card {
+        position: relative;
+        z-index: 2;
+
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 45px;
+        border-radius: 16px;
+        width: 380px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        transition: 0.3s;
+      }
+
+      .particles {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+      }
+
+      .particles span {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: white;
+        opacity: 0.3;
+        animation: float 10s linear infinite;
+      }
+
+      @keyframes float {
+        from {
+          transform: translateY(100vh);
+        }
+        to {
+          transform: translateY(-10vh);
+        }
+      }
+
+      .logo {
+        font-size: 46px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        white-space: nowrap;
+
+        color: #4facfe;
+
+        animation: colorMove 4s linear infinite;
+      }
+
+      @keyframes colorMove {
+        0% {
+          color: #4facfe;
+        }
+        50% {
+          color: #00f2fe;
+        }
+        100% {
+          color: #4facfe;
+        }
+      }
+
+      .logo {
+        font-size: 46px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        text-align: center;
+        display: block;
+        width: 100%;
+      }
+
+      .tagline {
+        text-align: center;
+        opacity: 0.7;
+        margin-bottom: 25px;
+      }
+
+      @media (max-width: 600px) {
+        .logo {
+          font-size: 36px;
+          color: #4facfe;
+        }
+      }
+
+      .input-group {
+        position: relative;
+        margin-bottom: 18px;
+      }
+
+      /* INPUT */
+
+      .input-group input {
+        width: 100%;
+        padding: 18px 14px 8px 14px;
+        border-radius: 10px;
+        border: none;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        font-size: 14px;
+        outline: none;
+      }
+
+      /* LABEL (PLACEHOLDER STYLE) */
+
+      .input-group label {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 13px;
+        color: #9ca3af;
+        transition: 0.25s ease;
+        pointer-events: none;
+      }
+
+      /* WHEN INPUT FOCUSED */
+
+      .input-group input:focus + label {
+        top: 2px;
+        transform: none;
+        font-size: 11px;
+        color: #4facfe;
+      }
+
+      /* WHEN TEXT EXISTS */
+
+      .input-group input:not(:placeholder-shown) + label {
+        top: 2px;
+        transform: none;
+        font-size: 11px;
+        color: #4facfe;
+      }
+
+  #toast{
+position: fixed;
+bottom: 25px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 9999;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+}
+
+.toast-message{
+padding: 12px 18px;
+border-radius: 10px;
+color: white;
+font-size: 14px;
+font-weight: 500;
+animation: slideUp 0.3s ease;
+box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+min-width: 220px;
+text-align: center;
+}
+
+.toast-success{
+background: linear-gradient(90deg,#22c55e,#16a34a);
+}
+
+.toast-error{
+background: linear-gradient(90deg,#ef4444,#dc2626);
+}
+
+@keyframes slideUp{
+from{
+opacity:0;
+transform: translateY(20px);
+}
+to{
+opacity:1;
+transform: translateY(0);
+}
+}
+      
+
+      #register-btn {
+        font-size: 15px;
+        color: #9ab5f4;
+      }
+
+      /* 
+mobile responsive */
+
+      @media (max-width: 600px) {
+        body {
+          padding: 20px;
+        }
+
+        .login-card {
+          width: 100%;
+          max-width: 400px;
+          padding: 30px 20px;
+        }
+
+        .login-card h1 {
+          font-size: 32px;
+        }
+
+        .login-card p {
+          align-items: flex-start;
+        }
+
+        .input-field {
+          font-size: 16px;
+          padding: 12px;
+        }
+
+        .login-btn,
+        .skip-btn {
+          padding: 14px;
+          font-size: 16px;
+        }
+      }
+
+      /* FIX CHROME AUTOFILL WHITE BACKGROUND */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+
+  -webkit-box-shadow: 0 0 0 30px rgba(255,255,255,0.08) inset !important;
+  -webkit-text-fill-color: white !important;
+
+  transition: background-color 5000s ease-in-out 0s;
+
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="login-card">
+      <h1 class="logo">Nerdy Notes</h1>
+      <p class="tagline">Access your notes instantly</p>
+
+      <div class="input-group">
+        <input type="email" id="email" placeholder=" " required />
+        <label>Email</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" placeholder=" " required />
+        <label>Password</label>
+      </div>
+
+      <button class="login-btn" onclick="loginUser()">Login</button>
+
+      <p class="switch">
+        Don't have an account?
+        <a id="register-btn" href="register.html">Register</a>
+      </p>
+
+      <button class="skip-btn" onclick="continueWithoutLogin()">
+        Continue without login
+      </button>
+    </div>
+
+    <div class="particles"></div>
+    <div id="toast"></div>
+    <script src="login.js"></script>
+  </body>
+</html>

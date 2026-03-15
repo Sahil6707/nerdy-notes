@@ -1,0 +1,415 @@
+
+
+
+/* maths html css */
+/* Chapters Section */
+.chapters-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display:flex;
+    gap: 20px;
+    flex-direction:column;
+}
+
+.note-card{
+    min-height: 140px;
+}
+
+/* SUBJECT PAGE NOTE CARDS */
+
+.chapters-container .note-card{
+padding:28px 24px;
+
+border-radius:20px;
+
+background:linear-gradient(
+145deg,
+rgba(255,255,255,0.05),
+rgba(255,255,255,0.02)
+);
+
+border:1px solid rgba(255,255,255,0.1);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+gap:10px;
+
+min-height:160px;
+
+transition:all 0.25s ease;
+}
+
+.download-btn{
+background:linear-gradient(90deg,#4da3ff,#7c5cff);
+color:white;
+
+padding:10px 20px;
+border-radius:20px;
+
+text-decoration:none;
+font-size:14px;
+font-weight:500;
+
+display:inline-block;
+
+margin-top:8px;
+}
+
+.note-card a{
+margin-top:6px;
+}
+
+.login-btn{
+background:rgba(255,255,255,0.08);
+color:white;
+padding:8px 16px;
+border-radius:20px;
+text-decoration:none;
+font-size:13px;
+border:1px solid rgba(255,255,255,0.15);
+}
+
+.chapters-container .note-card:hover{
+
+transform:translateY(-5px);
+
+border-color:#38bdf8;
+
+box-shadow:0 0 18px rgba(56,189,248,0.35);
+
+}
+
+.note-actions{
+display:flex;
+gap:10px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+.chapters-container h3{
+font-size:20px;
+margin-bottom:5px;
+font-weight:600;
+}
+
+.chapters-container p{
+opacity:0.65;
+font-size:12px;
+margin-bottom: 12px;
+}
+
+/* Card */
+.chapter-card {
+    padding: 30px;
+    border-radius: 20px;
+    transition: 0.3s ease;
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+/* Dark Mode */
+body.dark .chapter-card {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Light Mode */
+body.light .chapter-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    color: #1e293b;
+    transition: all 0.3s ease;
+}
+
+body.light .chapter-card button {
+    background: #2563eb;
+    color: white;
+}
+
+body.light .chapter-card button:hover {
+    background: #1d4ed8;
+}
+
+/* Hover */
+.chapter-card:hover {
+    transform: translateY(-6px);
+}
+
+body.light .chapter-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.chapter-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Button */
+.view-btn {
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s ease;
+    display: inline-block;
+    padding: 10px 20px;    
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Dark Button */
+body.dark .view-btn {
+    background: linear-gradient(90deg, #4da3ff, #7c5cff);
+    color: white;
+}
+/* Light Button */
+body.light .view-btn {
+    background: #2563eb;
+    color: white;
+}
+body.light .view-btn:hover {
+    background: #1d4ed8;
+}
+
+.view-btn:hover {
+    opacity: 0.85;
+    font-size: 15px;
+}
+.subject-hero{
+max-width:900px;
+margin:30px auto;
+text-align:center;
+padding:40px 20px;
+position: relative;
+}
+
+.subject-hero::before{
+content:"";
+position:absolute;
+width:400px;
+height:400px;
+background:radial-gradient(
+circle,
+rgba(56,189,248,0.08),
+transparent 70%
+);
+top:-70px;
+left:50%;
+transform:translateX(-50%);
+z-index:-1;
+}
+
+.subject-hero h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    text-shadow:0 0 20px rgba(56,189,248,0.3);
+}
+
+.subject-hero p {
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+body.light .subject-hero h2 {
+    color: #1e293b;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.subject-hero h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+body.light .subject-hero h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 38px;
+    color: #0f172a;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+
+.subject-hero p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.7;
+      max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px 40px;
+    text-align: center;
+    position: relative;
+}
+
+body.light .subject-hero p {
+    color: #64748b;
+     font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.7;
+      max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px 40px;
+    text-align: center;
+    position: relative;
+}
+
+.card-blue {
+    background: linear-gradient(145deg, rgba(77,163,255,0.2), rgba(77,163,255,0.05));
+    border-color: rgba(77,163,255,0.4);
+}
+
+.card-purple {
+    background: linear-gradient(145deg, rgba(124,92,255,0.2), rgba(124,92,255,0.05));
+    border-color: rgba(124,92,255,0.4);
+}
+
+.card-teal {
+    background: linear-gradient(145deg, rgba(0,200,200,0.2), rgba(0,200,200,0.05));
+    border-color: rgba(0,200,200,0.4);
+}
+
+
+/* Back button row */
+.subject-top {
+    text-align: left;
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+
+.back-btn{
+position:relative;
+left:auto;
+top:auto;
+
+display:flex;
+align-items:center;
+gap:6px;
+
+color:#38bdf8;
+font-size:14px;
+text-decoration:none;
+padding:6px 10px;
+border-radius:6px;
+transition:all .2s ease;
+}
+
+.back-btn:hover{
+background:rgba(56,189,248,0.12);
+}
+
+
+.arrow{
+font-size:18px;
+}
+
+body.light-mode .back-btn {
+    color: #b68b2e;
+}
+
+
+@media (max-width:480px){
+
+.subject-hero h2{
+font-size:24px;
+}
+
+.chapters-container{
+grid-template-columns:1fr;
+gap:20px;
+padding:30px 15px;
+}
+
+.chapter-card{
+padding:20px;
+}
+
+}
+
+.preview-btn {
+  background: #3b82f6;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-right: 10px;
+  font-weight: 500;
+  transition: 0.2s;
+  font-size: 12px;
+}
+
+.preview-btn:hover {
+  background: #2563eb;
+}
+
+body.light-mode .preview-btn {
+  background: #d4af37;
+  color: black;
+}
+
+body.light-mode .preview-btn:hover {
+  background: #b8962e;
+}
+
+/* MOBILE SUBJECT PAGE */
+
+@media (max-width:480px){
+
+
+.subject-hero{
+margin:20px auto;
+padding:25px 15px;
+}
+
+
+.subject-hero h2{
+
+font-size:24px;
+
+}
+
+.subject-subtitle{
+
+font-size:13px;
+
+}
+
+.chapters-container{
+
+padding:0 15px;
+
+}
+
+.note-card:active{
+transform:scale(0.97);
+}
+
+.chapters-container .note-card{
+
+padding:20px;
+
+}
+
+.chapters-container .note-card:hover{
+transform:translateY(-5px);
+border-color:#38bdf8;
+box-shadow:0 0 22px rgba(56,189,248,0.4);
+}
+
+}

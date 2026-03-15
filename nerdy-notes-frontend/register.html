@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Nerdy Notes - Register</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #111827, #1e1b4b, #020617);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* login card */
+
+      .login-card {
+        position: relative;
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 45px;
+        border-radius: 16px;
+        width: 380px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        transition: 0.3s;
+        animation: cardEnter 0.8s ease;
+        max-width: 380px;
+        width: 90%;
+      }
+
+      @keyframes cardEnter {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .login-card:hover {
+        transform: translateY(-6px);
+      }
+
+      /* logo */
+
+      .logo {
+        font-size: 46px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        color: #38bdf8;
+        text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+        text-align: center;
+        white-space: nowrap;
+        animation: colorMove 4s linear infinite;
+      }
+
+      @keyframes colorMove {
+        0% {
+          color: #4facfe;
+        }
+        50% {
+          color: #00f2fe;
+        }
+        100% {
+          color: #4facfe;
+        }
+      }
+
+      /* tagline */
+
+      .tagline {
+        opacity: 0.7;
+        margin-bottom: 25px;
+        font-size: 14px;
+      }
+
+      /* input group */
+
+      .input-group {
+        margin-bottom: 18px;
+      }
+
+      /* inputs */
+
+      .input-field {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        font-size: 14px;
+        outline: none;
+        margin-bottom: 5px;
+        transition: 0.3s;
+      }
+
+      .input-field::placeholder {
+        color: #9ca3af;
+      }
+
+      .input-field:focus {
+        box-shadow: 0 0 0 2px #3b82f6;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .input-field::placeholder {
+        color: #94a3b8;
+      }
+
+      /* login button */
+
+      .login-btn {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #6366f1, #4f46e5);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: 0.25s;
+      }
+
+      .login-btn:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+      }
+
+      /* login link */
+
+      .switch {
+        margin-top: 18px;
+        font-size: 14px;
+        color: #9ca3af;
+      }
+
+      .switch a {
+        color: #4facfe;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .switch a:hover {
+        text-decoration: underline;
+      }
+
+      /* Toast notification */
+
+      #toast {
+        position: fixed;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        pointer-events: none;
+      }
+
+      .toast-message {
+        background: #1f2937;
+        color: white;
+        padding: 14px 22px;
+        border-radius: 10px;
+        font-size: 14px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        margin-top: 10px;
+        min-width: 220px;
+        text-align: center;
+        animation: toastFade 0.35s ease forwards;
+      }
+
+      .toast-success {
+        border-left: 4px solid #22c55e;
+      }
+
+      .toast-error {
+        border-left: 4px solid #ef4444;
+      }
+
+      @keyframes toastFade {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .password-wrapper {
+        position: relative;
+      }
+
+      .toggle-eye {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 16px;
+        opacity: 0.7;
+      }
+
+      .toggle-eye:hover {
+        opacity: 1;
+      }
+
+      .password-wrapper {
+        position: relative;
+      }
+
+      .password-input {
+        padding-right: 45px;
+      }
+
+      .toggle-eye {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #9ca3af;
+        font-size: 15px;
+        transition: 0.2s;
+      }
+
+      .toggle-eye:hover {
+        color: #38bdf8;
+      }
+
+      /* mobile */
+
+      @media (max-width: 480px) {
+        .login-card {
+          width: 90%;
+          padding: 30px;
+        }
+
+        .logo {
+          font-size: 34px;
+        }
+      }
+
+      /* FIX CHROME AUTOFILL WHITE BACKGROUND */
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.08) inset !important;
+        -webkit-text-fill-color: white !important;
+
+        transition: background-color 5000s ease-in-out 0s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-card">
+      <h1 class="logo">Nerdy Notes</h1>
+      <p class="tagline">Create your account</p>
+
+      <div class="input-group">
+        <input type="text" id="name" class="input-field" placeholder="Name" />
+      </div>
+
+      <div class="input-group">
+        <input
+          type="email"
+          id="email"
+          class="input-field"
+          placeholder="Email"
+        />
+      </div>
+
+      <div class="input-group password-wrapper">
+        <input
+          type="password"
+          id="password"
+          class="input-field password-input"
+          placeholder="Password (min 6 characters)"
+        />
+
+        <span class="toggle-eye" onclick="togglePassword('password', this)">
+          <i class="fa-solid fa-eye"></i>
+        </span>
+      </div>
+
+      <div class="input-group password-wrapper">
+        <input
+          type="password"
+          id="confirmPassword"
+          class="input-field password-input"
+          placeholder="Confirm Password"
+        />
+
+        <span
+          class="toggle-eye"
+          onclick="togglePassword('confirmPassword', this)"
+        >
+          <i class="fa-solid fa-eye"></i>
+        </span>
+      </div>
+
+      <button
+        id="registerBtn"
+        type="button"
+        class="login-btn"
+        onclick="registerUser()"
+      >
+        Create Account
+      </button>
+      <p class="switch">
+        Already have an account?
+        <a href="login.html">Login</a>
+      </p>
+    </div>
+
+    <div id="toast"></div>
+
+    <script>
+      function showToast(message) {
+        const toast = document.createElement("div");
+
+        toast.innerText = message;
+        toast.style.position = "fixed";
+        toast.style.bottom = "30px";
+        toast.style.left = "50%";
+        toast.style.transform = "translateX(-50%)";
+        toast.style.background = "#22c55e";
+        toast.style.color = "white";
+        toast.style.padding = "12px 20px";
+        toast.style.borderRadius = "8px";
+        toast.style.fontSize = "14px";
+        toast.style.zIndex = "999";
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.remove();
+        }, 2000);
+      }
+    </script>
+
+    <script src="register.js"></script>
+  </body>
+</html>

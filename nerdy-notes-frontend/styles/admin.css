@@ -1,0 +1,302 @@
+
+/* ADMIN BUTTON */
+
+#adminBtn{
+  background: linear-gradient(135deg,#2563eb,#3b82f6);
+  color:white;
+  padding:7px 14px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:600;
+  text-decoration:none;
+  transition:all 0.25s ease;
+  margin-right:9px;
+}
+
+#adminBtn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(59,130,246,0.35);
+}
+
+body.light-mode #adminBtn{
+  background: linear-gradient(135deg,#FFD700,#FFC107);
+  color:black;
+}
+
+body.light-mode #adminBtn:hover{
+  box-shadow:0 6px 18px rgba(255,215,0,0.35);
+}
+
+.admin-container{
+  max-width:500px;
+  margin:80px auto;
+  padding:35px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  backdrop-filter:blur(10px);
+}
+
+.admin-container h2{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.admin-container input,
+.admin-container select{
+  width:100%;
+  padding:10px;
+  margin-bottom:15px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.05);
+  color:white;
+}
+
+#uploadNote{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.admin-container button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(59,130,246,0.35);
+}
+
+/* SELECT DROPDOWN FIX */
+
+.admin-container select{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.05);
+  color:white;
+  font-size:14px;
+}
+
+/* Fix dropdown list */
+.admin-container select option{
+  background:#1e293b;
+  color:white;
+}
+
+.admin-container input::placeholder{
+  color:#94a3b8;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width:600px){
+
+.admin-container{
+  width:90%;
+  margin:40px auto;
+  padding:25px;
+}
+
+.admin-container h2{
+  font-size:26px;
+}
+
+.admin-container input,
+.admin-container select{
+  padding:12px;
+  font-size:14px;
+}
+
+.admin-container button{
+  padding:14px;
+  font-size:14px;
+}
+
+}
+
+
+.admin-container button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(59,130,246,0.35);
+}
+
+@media (max-width:480px){
+
+.admin-container{
+  width:92%;
+  margin:30px auto;
+  padding:22px;
+  border-radius:14px;
+}
+
+.admin-container h2{
+  font-size:24px;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.admin-container input,
+.admin-container select{
+  width:100%;
+  padding:12px;
+  font-size:14px;
+  margin-bottom:14px;
+}
+
+.admin-container button{
+  width:100%;
+  padding:14px;
+  font-size:14px;
+  border-radius:10px;
+}
+
+/* Fix dropdown appearance */
+
+.admin-container select option{
+  background:#1e293b;
+  color:white;
+}
+
+/* Placeholder visibility */
+
+.admin-container input::placeholder{
+  color:#94a3b8;
+}
+
+/* File input spacing */
+
+#pdf{
+  font-size:13px;
+}
+
+/* Reduce overall spacing */
+
+body{
+  padding:10px;
+}
+
+}
+
+/* Fix Chrome Autofill */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.05) inset !important;
+  box-shadow: 0 0 0px 1000px rgba(255,255,255,0.05) inset !important;
+
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.admin-container input:-webkit-autofill{
+  -webkit-box-shadow:0 0 0 1000px rgba(255,255,255,0.05) inset;
+  -webkit-text-fill-color:#e5e7eb;
+}
+
+.notes-title{
+margin-top:40px;
+text-align:center;
+}
+
+.notes-list{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+
+.admin-note{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(255,255,255,0.05);
+  padding:18px 20px;
+  border-radius:10px;
+
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+
+.note-info{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.note-info p{
+font-size:13px;
+opacity:0.8;
+}
+
+.delete-btn-a{
+  background-color:#ef4444;
+  border:none;
+  color:white;
+
+  width:120px;          
+  height:36px;        
+
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.delete-btn:hover{
+  background:#dc2626;
+}
+
+.admin-filters{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.admin-filters select{
+padding:8px 12px;
+border-radius:6px;
+background:rgba(255,255,255,0.05);
+color:white;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.note-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.preview-btn-a{
+  background:#3b82f6;
+  color:white;
+  text-decoration:none;
+
+  width:100px;
+  height:38px;
+
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:600;
+  transition:0.2s;
+}
+
+.preview-btn-a:hover{
+  background:#2563eb;
+}

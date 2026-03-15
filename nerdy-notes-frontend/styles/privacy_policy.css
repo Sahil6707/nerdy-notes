@@ -1,0 +1,56 @@
+/* Page background */
+body {
+  background: #0f172a;   /* your dark theme */
+  color: #ffffff;
+}
+
+/* Hero Section */
+.policy-hero {
+  padding: 20px 10px 30px;
+  text-align: center;
+}
+
+.policy-hero h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.policy-hero p {
+  font-size: 14px;
+  color: #94a3b8;  /* soft grey */
+}
+
+/* Content Section */
+.policy-content {
+  padding: 60px 20px 120px;
+}
+
+.policy-container {
+  max-width: 800px;      /* THIS fixes the left alignment issue */
+  margin: 0 auto;        /* centers everything */
+}
+
+/* Headings */
+.policy-content h2 {
+  font-size: 26px;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+/* Paragraphs */
+.policy-content p {
+    font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+  color: #cbd5e1;
+}
+
+/* Contact email */
+.policy-content strong {
+  color: #8b5cf6;
+}
+
+.policy-hero {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}

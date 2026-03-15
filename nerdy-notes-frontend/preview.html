@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Preview Note</title>
+
+<style>
+body{
+margin:0;
+background:#0f172a;
+}
+
+iframe{
+width:100%;
+height:100vh;
+border:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<iframe id="pdfViewer"></iframe>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const file = params.get("file");
+
+if(file){
+document.getElementById("pdfViewer").src =
+"http://localhost:5000" + file;
+}
+
+</script>
+
+</body>
+</html>

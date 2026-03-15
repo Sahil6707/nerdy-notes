@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nerdy Notes | NIT Srinagar Semester Notes</title>
+    <meta name="description" content="Nerdy Notes provides organized semester-wise notes for NIT Srinagar students including PYQs, revision kits, and exam-focused resources." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="images/The-Logo.png" />
+    <link rel="stylesheet" href="styles/admin.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div id="header-up"></div>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-container">
+          <img src="images/The-Logo.png" class="logo" alt="Nerdy Notes Logo" />
+          <h1 id="header-text">Nerdy Notes</h1>
+          <span class="college-badge">NIT Srinagar</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div id="authSection"></div>
+
+        <a
+          style="display: none"
+          href="admin.html"
+          id="adminBtn"
+          class="adminBtn"
+          >Admin</a
+        >
+
+        <button id="themeToggle" class="theme-toggle">
+          <span class="icon"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero ">
+      
+      <div class="hero-content">
+        <h2>Find Your Semester Notes</h2>
+        <p class="hero-subtitle">
+          Organized semester-wise notes for NIT Srinagar students.
+        </p>
+
+        <input
+          type="text"
+          id="searchInput"
+          autocomplete="off"
+          placeholder="Search by subject..."
+        />
+
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="Year 1">1st Year</button>
+          <button class="filter-btn" data-filter="Year 2">2nd Year</button>
+          <button class="filter-btn" data-filter="Year 3">3rd Year</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="noteFlow" class="note-flow">
+      <span class="paper"></span>
+      <span class="paper"></span>
+      <span class="paper"></span>
+      <span class="paper"></span>
+    </div>
+
+    <!-- Notes Section -->
+
+    <div id="subjects-anchor"></div>
+
+    <section id="subjects" class="notes-container reveal">
+      <a class="note-card" data-category="Year 1" href="subjects/maths.html">
+        <div class="subject-icon">➗</div>
+        <h3>Engineering Mathematics</h3>
+      </a>
+
+      <a class="note-card" data-category="Year 1" href="subjects/physics.html">
+        <div class="subject-icon">⚡</div>
+        <h3>Engineering Physics</h3>
+      </a>
+
+      <a
+        class="note-card"
+        data-category="Year 1"
+        href="subjects/chemistry.html"
+      >
+        <div class="subject-icon">🧪</div>
+        <h3>Engineering Chemistry</h3>
+      </a>
+
+      <a class="note-card" data-category="Year 1" href="subjects/english.html">
+        <div class="subject-icon">🗣️</div>
+        <h3>English and Communication Skills</h3>
+      </a>
+
+      <a
+        class="note-card"
+        data-category="Year 1"
+        href="subjects/electrical.html"
+      >
+        <div class="subject-icon">🔌</div>
+        <h3>Basic Electrical Engineering</h3>
+      </a>
+
+      <a class="note-card" data-category="Year 1" href="subjects/cp.html">
+        <div class="subject-icon">💻</div>
+        <h3>Computer Programming</h3>
+      </a>
+
+      <a class="note-card" data-category="Year 1" href="subjects/ed.html">
+        <div class="subject-icon">📐</div>
+        <h3>Engineering Drawing</h3>
+      </a>
+
+      <a class="note-card" data-category="Year 1" href="subjects/eme.html">
+        <div class="subject-icon">⚙️</div>
+        <h3>Elements of Mechanical Engineering</h3>
+      </a>
+
+      <a class="note-card" data-category="Year 1" href="subjects/evs.html">
+        <div class="subject-icon">🌱</div>
+        <h3>Environmental Studies</h3>
+      </a>
+
+      <a
+        class="note-card"
+        data-category="Year 1"
+        href="subjects/mechanical.html"
+      >
+        <div class="subject-icon">🧲</div>
+        <h3>Engineering Mechanics</h3>
+      </a>
+
+      <a class="note-card" data-category="Year 1" href="subjects/workshop.html">
+        <div class="subject-icon">🛠️</div>
+        <h3>Workshop</h3>
+      </a>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- About Section -->
+
+    <div class="about-container reveal">
+      <h2 class="about-heading">About Nerdy Notes</h2>
+
+      <p class="about-text">
+        Nerdy Notes is a student-driven platform built exclusively for NIT
+        Srinagar students. We provide clean, organized, semester-wise notes to
+        make exam preparation simple and efficient.
+      </p>
+
+      <div class="about-features">
+        <div style="font-family: Inter" class="feature">
+          ✔ Free Semester Notes
+        </div>
+        <div style="font-family: Inter" class="feature">
+          ✔ Organized Subject-wise PDFs
+        </div>
+        <div class="feature">✔ Exam-Focused Important Questions</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Stats  -->
+
+    <div class="stats">
+      <div class="stat-box">
+        <h3 class="counter" data-target="50">0</h3>
+        <p>Notes</p>
+      </div>
+
+      <div class="stat-box">
+        <h3 class="counter" data-target="10">0</h3>
+        <p>Subjects</p>
+      </div>
+
+      <div class="stat-box">
+        <h3 class="counter" data-target="90">0</h3>
+        <p>Students</p>
+      </div>
+    </div>
+
+    <div id="premium-up"></div>
+
+    <section class="upgrade-divider">
+      <h3 style="user-select: none">Want More Than Just Notes?</h3>
+      <p style="user-select: none">
+        Go deeper with exam-focused premium material.
+      </p>
+    </section>
+
+    <div class="bg-animation"></div>
+
+    <section class="premium reveal">
+      <div style="user-select: none" class="badge">NEW • PREMIUM</div>
+      <h2 style="user-select: none">Unlock Premium Notes</h2>
+      <p style="user-select: none">Next-level preparation starts here.</p>
+
+      <div class="premium-cards">
+        <div class="card">
+          <h3 style="user-select: none">Solved PYQs</h3>
+          <p>Detailed solutions of previous year questions.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="user-select: none">Important Questions</h3>
+          <p>Frequently repeated and exam-focused questions.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="user-select: none">Revision Kit</h3>
+          <p>Quick revision sheets before exams.</p>
+        </div>
+      </div>
+
+      <a
+        style="user-select: none"
+        id="prem-btn"
+        href="premium.html"
+        class="premium-btn"
+      >
+        Explore Premium
+      </a>
+
+      <div id="prem-divider"></div>
+
+      <!-- feedback section -->
+      <section class="feedback">
+        <h2 style="user-select: none"># What Students Say -</h2>
+
+        <div class="feedback-card">
+          <div style="user-select: none" class="profile">AY</div>
+          <div class="content">
+            <h4 style="user-select: none">Ankush Yadav</h4>
+            <span style="user-select: none">2nd Semester</span>
+            <p style="user-select: none">
+              The premium notes are very well structured and helped me score
+              better in internals.
+            </p>
+          </div>
+        </div>
+
+        <div class="feedback-card">
+          <div style="user-select: none" class="profile">AK</div>
+
+          <div class="content">
+            <h4 style="user-select: none">Akshay Krishan</h4>
+            <span style="user-select: none">1st Semester</span>
+            <p style="user-select: none">
+              Clean explanations and exam-focused topics. Totally worth it.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="logo-footer">NerdyNotes</h3>
+          <p>Helping students prepare smarter and score better.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#header-up">Home</a></li>
+            <li><a href="#searchInput">Free Notes</a></li>
+            <li><a href="#premium-up">Premium</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="privacy_policy.html">Privacy Policy</a></li>
+            <li><a href="term.html">Terms</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>info.nerdynotes@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 NerdyNotes. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+
+    <script>
+      const token = localStorage.getItem("token");
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const authSection = document.getElementById("authSection");
+
+      if (token && user) {
+        authSection.innerHTML = `
+<span id="welcome-text" class="welcome-text">Welcome, ${user.name}</span>
+<button class="logout-btn" onclick="logout()">Logout</button>
+`;
+      } else {
+        authSection.innerHTML = `
+<a class="login-link" href="login.html">Login</a>
+<a class="register-link" href="register.html">Register</a>
+`;
+      }
+
+      function logout() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        window.location.reload();
+      }
+    </script>
+  </body>
+</html>
