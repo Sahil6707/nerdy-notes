@@ -30,7 +30,7 @@ form.addEventListener("submit", async function (e) {
   formData.append("pdf", document.getElementById("pdfFile").files[0]);
 
   try {
-    const response = await fetch("http://localhost:5000/api/notes/upload", {
+    const response = await fetch("https://nerdy-notes-backend.onrender.com/api/notes/upload", {
       method: "POST",
       headers: {
         Authorization: "Bearer " + token
@@ -62,7 +62,7 @@ async function loadNotes(){
 const subjectFilter = document.getElementById("filterSubject").value;
 const yearFilter = document.getElementById("filterYear").value;
 
-const res = await fetch("http://localhost:5000/api/notes");
+const res = await fetch("https://nerdy-notes-backend.onrender.com/api/notes");
 
 let notes = await res.json();
 
@@ -121,7 +121,7 @@ if(!confirm("Delete this note?")) return;
 
 try{
 
-await fetch(`http://localhost:5000/api/notes/${id}`,{
+await fetch(`https://nerdy-notes-backend.onrender.com/api/notes/${id}`,{
 method:"DELETE",
 headers:{
 Authorization:`Bearer ${token}`
@@ -144,7 +144,7 @@ alert("File not found");
 return;
 }
 
-const url = "http://localhost:5000/" + fileUrl.replace(/^\/+/, "");
+const url = "https://nerdy-notes-backend.onrender.com/" + fileUrl.replace(/^\/+/, "");
 
 window.open(url, "_blank");
 
