@@ -6,7 +6,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "nerdy-notes",
-    resource_type: "auto"
+    resource_type: "raw"
   }
 });
 
