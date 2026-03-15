@@ -144,9 +144,6 @@ alert("File not found");
 return;
 }
 
-// force browser PDF viewer
-const previewUrl = fileUrl.replace("/upload/", "/upload/fl_inline/");
-
-window.open(previewUrl, "_blank");
+window.open(fileUrl, "_blank");
 
 }
