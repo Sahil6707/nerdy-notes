@@ -44,6 +44,13 @@ async function registerUser() {
     return;
   }
 
+  if(name.length > 15){
+  showToast("Username must be under 15 characters","error");
+  btn.disabled = false;
+  btn.innerText = "Create Account";
+  return;
+}
+
 // Name without spacing
 
 const usernamePattern = /^[a-zA-Z0-9]+$/;
@@ -141,10 +148,5 @@ if (nameInput) {
   nameInput.addEventListener("input", function () {
     this.value = this.value.replace(/\s/g, "");
   });
-}
-
-if(name.length > 15){
-  showToast("Username must be under 15 characters","error");
-  return;
 }
 
