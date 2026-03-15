@@ -184,9 +184,9 @@ ${
   note.isPremium
     ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
     : token
-      ? `<a target="_blank" class="download-btn" href="https://nerdy-notes-backend.onrender.com${note.fileUrl}" download>Download</a>`
+      ? `<a target="_blank" class="download-btn" href="${note.fileUrl}" download>`
       : `
-      <a class="preview-btn" href="/preview.html?file=${note.fileUrl}" target="_blank">Preview</a>
+      <a class="preview-btn" href="${note.fileUrl}" target="_blank">
       <a class="login-btn" href="login.html">Login</a>
       `
 }

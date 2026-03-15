@@ -144,8 +144,7 @@ alert("File not found");
 return;
 }
 
-const url = "https://nerdy-notes-backend.onrender.com/" + fileUrl.replace(/^\/+/, "");
-
-window.open(url, "_blank");
+// open cloudinary link directly
+window.open(fileUrl, "_blank");
 
 }
