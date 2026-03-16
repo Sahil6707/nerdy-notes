@@ -33,19 +33,19 @@ router.post(
         year,
         module,
         isPremium: type === "premium",
-        uploadedBy: req.user.id,
+        uploadedBy: req.user.id
       });
 
       await note.save();
 
       res.json({
         message: "Note uploaded successfully",
-        note,
+        note
       });
 
     } catch (error) {
-      console.error("Upload error:", error);
-      res.status(500).json({ message: "Upload failed" });
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
     }
   }
 );
