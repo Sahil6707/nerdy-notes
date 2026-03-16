@@ -186,11 +186,11 @@ ${
   note.isPremium
     ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
     : token
-      ? `<a target="_blank" class="download-btn" href="${note.fileUrl}">Download</a>`
-      : `
-      <a class="preview-btn" href="${note.fileUrl}" target="_blank">Preview</a>
-      <a class="login-btn" href="login.html">Login</a>
-      `
+      ? `<a class="download-btn" href="${note.fileUrl}" download>Download</a>`
+     : `
+<a class="preview-btn" href="preview.html?file=${encodeURIComponent(note.fileUrl)}">Preview</a>
+<a class="login-btn" href="login.html">Login</a>
+`
 }
 
 </div>
