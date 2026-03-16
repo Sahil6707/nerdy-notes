@@ -21,11 +21,8 @@ router.post(
       if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
       }
-
       const { title, subject, year, module, type } = req.body;
-
-      const fileUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
-
+      const fileUrl = req.file.path;
       const note = new Note({
         title,
         subject,
@@ -35,14 +32,11 @@ router.post(
         isPremium: type === "premium",
         uploadedBy: req.user.id
       });
-
       await note.save();
-
       res.json({
         message: "Note uploaded successfully",
         note
       });
-
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
