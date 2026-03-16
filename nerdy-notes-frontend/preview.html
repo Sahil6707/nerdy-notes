@@ -22,17 +22,16 @@ border:none;
 
 <iframe id="pdfViewer"></iframe>
 
-<script>
+<iframe id="pdfViewer"></iframe>
 
+<script>
 const params = new URLSearchParams(window.location.search);
 const file = params.get("file");
 
-if(file){
-const previewUrl = file.replace("/raw/upload/", "/image/upload/pg_1/");
-document.getElementById("pdfViewer").src = previewUrl;
+if (file) {
+  const previewUrl = file.replace("/raw/upload/", "/image/upload/pg_1/");
+  document.getElementById("pdfViewer").src = previewUrl;
 }
-
 </script>
-
 </body>
 </html>
