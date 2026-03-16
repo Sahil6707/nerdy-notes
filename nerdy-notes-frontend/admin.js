@@ -137,6 +137,7 @@ console.error(error);
 }
 
 }
+
 function previewNote(fileUrl){
 
 if(!fileUrl){
