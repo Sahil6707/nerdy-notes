@@ -6,9 +6,8 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => ({
     folder: "nerdy-notes",
-    resource_type: "raw",
+    resource_type: "auto",
     public_id: Date.now() + "-" + file.originalname.replace(/\s+/g, "_"),
-    format: "pdf"
   })
 });
 
