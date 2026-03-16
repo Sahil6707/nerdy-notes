@@ -139,11 +139,12 @@ console.error(error);
 }
 function previewNote(fileUrl){
 
-if(!fileUrl){
-alert("File not found");
-return;
-}
+  if(!fileUrl){
+    alert("File not found");
+    return;
+  }
 
-window.open("/preview.html?file=" + encodeURIComponent(fileUrl), "_blank");
+  const previewUrl = `preview.html?file=${encodeURIComponent(fileUrl)}`;
+  window.open(previewUrl, "_blank");
 
 }

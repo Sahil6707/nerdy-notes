@@ -23,14 +23,14 @@ border:none;
 <iframe id="pdfViewer"></iframe>
 
 <script>
+
 const params = new URLSearchParams(window.location.search);
 const file = params.get("file");
 
-if (file) {
-  const viewer =
-    "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(file);
-  document.getElementById("pdfViewer").src = viewer;
+if(file){
+  document.getElementById("pdfViewer").src = file;
 }
+
 </script>
 </body>
 </html>
