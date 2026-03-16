@@ -24,7 +24,7 @@ router.post(
 
       const { title, subject, year, module, type } = req.body;
 
-      const fileUrl = req.file.path;
+      const fileUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
 
       const note = new Note({
         title,

@@ -1,17 +1,15 @@
 const multer = require("multer");
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
-const cloudinary = require("../config/cloudinary");
+const path = require("path");
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: async (req, file) => ({
-    folder: "nerdy-notes",
-    resource_type: "raw",
-    type: "upload",
-    access_mode: "public",
-    public_id: Date.now() + "-" + file.originalname.replace(/\s+/g, "_"),
-  })
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
 });
+
 const upload = multer({ storage });
 
 module.exports = upload;
