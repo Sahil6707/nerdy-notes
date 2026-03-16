@@ -188,7 +188,7 @@ ${
     : token
       ? `<a class="download-btn" href="${note.fileUrl}" download>Download</a>`
      : `
-<a class="preview-btn" href="preview.html?file=${encodeURIComponent(note.fileUrl)}" target="_blank">Preview</a>
+<a class="preview-btn" href="/preview.html?file=${encodeURIComponent(note.fileUrl)}" target="_blank">Preview</a>
 <a class="login-btn" href="/login.html">Login</a>
 `
 }

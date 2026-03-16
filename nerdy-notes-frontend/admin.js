@@ -144,6 +144,6 @@ alert("File not found");
 return;
 }
 
-window.open(`preview.html?file=${encodeURIComponent(fileUrl)}`, "_blank");
+window.open("/preview.html?file=" + encodeURIComponent(fileUrl), "_blank");
 
 }
