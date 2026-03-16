@@ -23,7 +23,7 @@ border:none;
 
 <body>
 
-<iframe id="pdfViewer" sandbox="allow-scripts allow-same-origin"></iframe>
+<embed id="pdfViewer" type="application/pdf">
 
 <script>
 
@@ -37,7 +37,6 @@ if(file){
     file = file.replace("http://","https://");
   }
 
- const viewer = file + "#toolbar=0&navpanes=0&scrollbar=0";
 document.getElementById("pdfViewer").src = viewer;
 }
 
