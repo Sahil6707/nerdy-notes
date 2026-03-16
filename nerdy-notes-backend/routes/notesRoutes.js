@@ -22,7 +22,7 @@ router.post(
         return res.status(400).json({ message: "No file uploaded" });
       }
       const { title, subject, year, module, type } = req.body;
-      const fileUrl = req.file.path + ".pdf";
+      const fileUrl = req.file.path;
       const note = new Note({
         title,
         subject,
