@@ -5,7 +5,6 @@ const cloudinary = require("../config/cloudinary");
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "nerdy-notes",
     resource_type: "raw"
   }
 });
