@@ -136,6 +136,13 @@ window.addEventListener("load", revealOnScroll);
 
 const counters = document.querySelectorAll(".counter");
 
+function previewNote(noteId) {
+  window.open(
+    `https://nerdy-notes-backend.onrender.com/api/notes/preview/${noteId}`,
+    "_blank"
+  );
+}
+
 function startCounters() {
   counters.forEach((counter) => {
     const target = parseInt(counter.getAttribute("data-target"));
@@ -188,7 +195,7 @@ ${
     : token
       ? `<a class="download-btn" href="${note.fileUrl}" download>Download</a>`
   : `
-<a class="preview-btn" href="/preview.html?file=${encodeURIComponent(note.fileUrl)}" target="_blank">Preview</a>
+<a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">Preview</a>
 <a class="login-btn" href="/login.html">Login</a>
 `
 }

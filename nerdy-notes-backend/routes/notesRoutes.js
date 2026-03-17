@@ -4,6 +4,7 @@ const Note = require("../models/Note");
 const authMiddleware = require("../middlewares/authMiddleware");
 const Purchase = require("../models/Purchase");
 const upload = require("../middlewares/upload");
+const fetch = require("node-fetch");
 
 const fs = require("fs");
 const path = require("path");
@@ -24,10 +25,7 @@ console.log("FINAL FILE URL:", req.file.path + ".pdf");
         return res.status(400).json({ message: "No file uploaded" });
       }
       const { title, subject, year, module, type } = req.body;
-     const fileUrl = req.file.path.replace(
-  "/raw/upload/",
-  "/raw/upload/fl_attachment:false/"
-);
+     const fileUrl = req.file.path;
       const note = new Note({
         title,
         subject,
@@ -130,4 +128,29 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   }
 });
 
+const https = require("https");
+
+router.get("/preview/:id", async (req, res) => {
+  try {
+    const note = await Note.findById(req.params.id);
+
+    if (!note) {
+      return res.status(404).send("Note not found");
+    }
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", "inline");
+
+    https.get(note.fileUrl, (stream) => {
+      stream.pipe(res);
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error loading PDF");
+  }
+});
+
 module.exports = router;
+
+
