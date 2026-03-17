@@ -16,7 +16,7 @@ router.post(
   authMiddleware,
   upload.single("pdf"),
   async (req, res) => {
-    console.log("Uploaded file:", req.file);
+    console.log("FILE DEBUG:", req.file);
     try {
 
       if (!req.file) {
