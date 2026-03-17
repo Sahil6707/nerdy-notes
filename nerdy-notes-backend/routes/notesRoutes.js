@@ -24,9 +24,10 @@ console.log("FINAL FILE URL:", req.file.path + ".pdf");
         return res.status(400).json({ message: "No file uploaded" });
       }
       const { title, subject, year, module, type } = req.body;
-      const fileUrl = req.file.path
-  .replace("/raw/upload/", "/raw/upload/fl_attachment:false/")
-  + ".pdf";
+     const fileUrl = req.file.path.replace(
+  "/raw/upload/",
+  "/raw/upload/fl_attachment:false/"
+);
       const note = new Note({
         title,
         subject,
