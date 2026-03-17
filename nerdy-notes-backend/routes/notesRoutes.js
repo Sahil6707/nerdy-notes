@@ -129,7 +129,6 @@ router.delete("/:id", authMiddleware, async (req, res) => {
 
 const https = require("https");
 
-const https = require("https");
 
 router.get("/preview/:id", async (req, res) => {
   try {
