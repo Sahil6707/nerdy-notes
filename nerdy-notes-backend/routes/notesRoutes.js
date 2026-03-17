@@ -17,6 +17,7 @@ router.post(
   upload.single("pdf"),
   async (req, res) => {
     console.log("FILE DEBUG:", req.file);
+console.log("FINAL FILE URL:", req.file.path + ".pdf");
     try {
 
       if (!req.file) {
