@@ -4,7 +4,7 @@ const Note = require("../models/Note");
 const authMiddleware = require("../middlewares/authMiddleware");
 const Purchase = require("../models/Purchase");
 const upload = require("../middlewares/upload");
-const fetch = require("node-fetch");
+
 
 const fs = require("fs");
 const path = require("path");
