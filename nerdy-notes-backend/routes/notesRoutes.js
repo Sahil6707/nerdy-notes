@@ -18,7 +18,6 @@ router.post(
   upload.single("pdf"),
   async (req, res) => {
     console.log("FILE DEBUG:", req.file);
-console.log("FINAL FILE URL:", req.file.path + ".pdf");
     try {
 
       if (!req.file) {
@@ -130,6 +129,8 @@ router.delete("/:id", authMiddleware, async (req, res) => {
 
 const https = require("https");
 
+const https = require("https");
+
 router.get("/preview/:id", async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
@@ -141,8 +142,8 @@ router.get("/preview/:id", async (req, res) => {
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader("Content-Disposition", "inline");
 
-    https.get(note.fileUrl, (stream) => {
-      stream.pipe(res);
+    https.get(note.fileUrl, (response) => {
+      response.pipe(res);
     });
 
   } catch (err) {
