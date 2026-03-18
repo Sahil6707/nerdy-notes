@@ -20,7 +20,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="/images/The-Logo.png" />
+    
     <link rel="stylesheet" href="styles/admin.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
@@ -30,7 +30,7 @@
     <header class="header">
       <div class="header-left">
         <div class="logo-container">
-          <img src="/images/The-Logo.png" class="logo" alt="Nerdy Notes Logo" />
+         
           <h1 id="header-text">Nerdy Notes</h1>
           <span class="college-badge">NIT Srinagar</span>
         </div>
@@ -306,6 +306,32 @@
           <p>info.nerdynotes@gmail.com</p>
         </div>
       </div>
+
+      <!-- LOGIN POPUP -->
+<div id="loginPopup" class="login-popup hidden">
+
+  <div class="popup-box">
+
+    <button class="close-popup" onclick="closePopup()">×</button>
+
+    <h2>Unlock Full Access 🚀</h2>
+
+    <p>
+      Get instant access to high-quality notes, downloads, and premium material.
+    </p>
+
+    <div class="popup-actions">
+      <a href="login.html" class="popup-login">Login</a>
+      <a href="register.html" class="popup-register">Register</a>
+    </div>
+
+    <button class="guest-btn" onclick="closePopup()">
+      Continue as Guest
+    </button>
+
+  </div>
+
+</div>
 
       <div class="footer-bottom">
         <p>© 2026 NerdyNotes. All rights reserved.</p>

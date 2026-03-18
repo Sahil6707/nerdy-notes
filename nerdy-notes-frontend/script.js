@@ -215,6 +215,14 @@ ${
 }
 
 window.downloadNote = function (noteId) {
+
+  const token = localStorage.getItem("token");
+
+  if(!token){
+    showPopup(); // 🔥 THIS is the smart trigger
+    return;
+  }
+
   window.open(
     `https://nerdy-notes-backend.onrender.com/api/notes/download/${noteId}`,
     "_blank"
@@ -233,4 +241,36 @@ if (userData && userData.role === "admin") {
   }
 }
 
+// ===== LOGIN POPUP SYSTEM =====
 
+function showPopup(){
+  const popup = document.getElementById("loginPopup");
+  if(popup){
+    popup.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+}
+
+window.closePopup = function(){
+  const popup = document.getElementById("loginPopup");
+  if(popup){
+    popup.classList.add("hidden");
+    document.body.style.overflow = "auto";
+
+    localStorage.setItem("popupShown", "true");
+  }
+}
+
+// SHOW AFTER 3 SEC (ONLY ONCE)
+window.addEventListener("load", () => {
+
+  const token = localStorage.getItem("token");
+
+  if(!token && !localStorage.getItem("popupShown")){
+    setTimeout(() => {
+      showPopup();
+      localStorage.setItem("popupShown", "true");
+    }, 2500);
+  }
+
+});

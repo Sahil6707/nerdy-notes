@@ -1,3 +1,5 @@
+const loginBtn = document.getElementById("loginBtn");
+
 /* AUTO LOGIN CHECK */
 const token = localStorage.getItem("token");
 
@@ -58,6 +60,9 @@ showToast("Please enter email and password","error");
 return;
 }
 
+loginBtn.disabled = true;
+loginBtn.innerText = "Logging in...";
+
 
 try{
 
@@ -79,6 +84,10 @@ const data = await response.json();
 
 if(!response.ok){
 showToast(data.message || "Invalid login","error");
+
+loginBtn.disabled = false;
+loginBtn.innerText = "Login";
+
 return;
 }
 
@@ -88,6 +97,7 @@ return;
 
 
 showToast("Login successful","success");
+loginBtn.innerText = "Success...";
 
 /* STORE TOKEN */
 
@@ -105,6 +115,9 @@ window.location.href="index.html";
 }catch(error){
 
 showToast("Server error","error");
+
+loginBtn.disabled = false;
+loginBtn.innerText = "Login";
 
 }
 
