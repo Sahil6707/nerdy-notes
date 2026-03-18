@@ -244,6 +244,7 @@ if (userData && userData.role === "admin") {
 // ===== LOGIN POPUP SYSTEM =====
 
 function showPopup(force = false){
+   console.log("POPUP CALLED", force);
   const popup = document.getElementById("loginPopup");
 
   if(popup){
