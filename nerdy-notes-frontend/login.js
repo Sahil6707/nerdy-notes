@@ -1,3 +1,9 @@
+// 🚫 If user comes normally (navbar login), clear pending
+if (!document.referrer.includes("preview") && !document.referrer.includes("subjects")) {
+  localStorage.removeItem("pendingDownload");
+  localStorage.removeItem("fromDownloadPopup");
+}
+
 const loginBtn = document.getElementById("loginBtn");
 
 /* AUTO LOGIN CHECK */
@@ -108,6 +114,20 @@ localStorage.setItem("user",JSON.stringify(data.user));
 
 // CHECK if user had clicked download before login
 const pending = localStorage.getItem("pendingDownload");
+const fromPopup = localStorage.getItem("fromDownloadPopup");
+
+// 🔥 ONLY download if login came from popup
+if (pending && fromPopup === "true") {
+
+  window.open(
+    `https://nerdy-notes-backend.onrender.com/api/notes/download/${pending}`,
+    "_blank"
+  );
+
+  // cleanup
+  localStorage.removeItem("pendingDownload");
+  localStorage.removeItem("fromDownloadPopup");
+}
 
 if (pending) {
   window.open(

@@ -244,7 +244,6 @@ if (userData && userData.role === "admin") {
 // ===== LOGIN POPUP SYSTEM =====
 
 function showPopup(force = false){
-   console.log("POPUP CALLED", force);
   const popup = document.getElementById("loginPopup");
 
   if(popup){
@@ -270,18 +269,31 @@ window.addEventListener("load", () => {
 
   const token = localStorage.getItem("token");
 
-  // 🔥 ONLY run if NO popup currently visible
-  if(!token && !localStorage.getItem("popupShown")){
-    setTimeout(() => {
+  if(token || localStorage.getItem("popupShown")) return;
 
-      const popup = document.getElementById("loginPopup");
+  let triggered = false;
 
-      if(popup && popup.classList.contains("hidden")){
-        showPopup();
-        localStorage.setItem("popupShown", "true");
-      }
+  function triggerPopup(){
+    if(triggered) return;
 
-    }, 3000);
+    triggered = true;
+
+    const popup = document.getElementById("loginPopup");
+
+    if(popup && popup.classList.contains("hidden")){
+      showPopup();
+      localStorage.setItem("popupShown", "true");
+    }
   }
+
+  // 🔥 Trigger 1: user scrolls
+  window.addEventListener("scroll", () => {
+    if(window.scrollY > 100){
+      triggerPopup();
+    }
+  });
+
+  // 🔥 Trigger 2: fallback after delay
+  setTimeout(triggerPopup, 1500);
 
 });
