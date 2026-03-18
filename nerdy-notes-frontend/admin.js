@@ -2,23 +2,30 @@
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-if(!user || user.role !== "admin"){
-alert("Access denied");
-window.location.href = "index.html";
+if (!user || user.role !== "admin") {
+  alert("Access denied");
+  window.location.href = "index.html";
 }
 
-
 const form = document.getElementById("uploadForm");
+const uploadBtn = document.getElementById("uploadNote");
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
+  uploadBtn.disabled = true;
+  uploadBtn.innerText = "Uploading...";
+
   const token = localStorage.getItem("token");
 
   if (!token) {
-    alert("You must login first");
-    return;
-  }
+  alert("You must login first");
+
+  uploadBtn.disabled = false;
+  uploadBtn.innerText = "Upload Note";
+
+  return;
+}
 
   const formData = new FormData();
 
@@ -30,13 +37,16 @@ form.addEventListener("submit", async function (e) {
   formData.append("pdf", document.getElementById("pdfFile").files[0]);
 
   try {
-    const response = await fetch("https://nerdy-notes-backend.onrender.com/api/notes/upload", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + token
+    const response = await fetch(
+      "https://nerdy-notes-backend.onrender.com/api/notes/upload",
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        body: formData,
       },
-      body: formData
-    });
+    );
 
     const data = await response.json();
 
@@ -44,73 +54,79 @@ form.addEventListener("submit", async function (e) {
 
     if (!response.ok) {
       alert(data.message || "Upload failed");
+
+      uploadBtn.disabled = false;
+      uploadBtn.innerText = "Upload Note";
+
       return;
     }
 
     alert("Notes uploaded successfully");
 
     form.reset();
+    uploadBtn.disabled = false;
+uploadBtn.innerText = "Upload Note";
 
   } catch (error) {
-    console.error(error);
-    alert("Server error");
-  }
+  console.error(error);
+  alert("Server error");
+
+  uploadBtn.disabled = false;
+  uploadBtn.innerText = "Upload Note";
+}
 });
 
-async function loadNotes(){
+async function loadNotes() {
+  const subjectFilter = document.getElementById("filterSubject").value;
+  const yearFilter = document.getElementById("filterYear").value;
 
-const subjectFilter = document.getElementById("filterSubject").value;
-const yearFilter = document.getElementById("filterYear").value;
+  const res = await fetch("https://nerdy-notes-backend.onrender.com/api/notes");
 
-const res = await fetch("https://nerdy-notes-backend.onrender.com/api/notes");
+  let notes = await res.json();
 
-let notes = await res.json();
-
-if(subjectFilter){
-notes = notes.filter(n => n.subject === subjectFilter);
-}
-
-if(yearFilter){
-notes = notes.filter(n => n.year == yearFilter);
-}
-
-const container = document.getElementById("notesList");
-
-container.innerHTML = "";
-
-// STEP 1: Group notes by module
-const grouped = {};
-
-notes.forEach(note => {
-  if (!grouped[note.module]) {
-    grouped[note.module] = [];
+  if (subjectFilter) {
+    notes = notes.filter((n) => n.subject === subjectFilter);
   }
-  grouped[note.module].push(note);
-});
 
-// STEP 2: Sort modules
-const sortedModules = Object.keys(grouped)
-  .map(Number)
-  .sort((a, b) => a - b);
+  if (yearFilter) {
+    notes = notes.filter((n) => n.year == yearFilter);
+  }
 
-// STEP 3: Render modules + notes
-sortedModules.forEach(moduleNumber => {
+  const container = document.getElementById("notesList");
 
-  const moduleSection = document.createElement("div");
-  moduleSection.classList.add("module-section");
+  container.innerHTML = "";
 
-  // Module heading
-  const heading = document.createElement("h2");
-  heading.innerText = `Module ${moduleNumber}`;
-  moduleSection.appendChild(heading);
+  // STEP 1: Group notes by module
+  const grouped = {};
 
-  // Notes inside module
-  grouped[moduleNumber].forEach(note => {
+  notes.forEach((note) => {
+    if (!grouped[note.module]) {
+      grouped[note.module] = [];
+    }
+    grouped[note.module].push(note);
+  });
 
-    const div = document.createElement("div");
-    div.classList.add("admin-note");
+  // STEP 2: Sort modules
+  const sortedModules = Object.keys(grouped)
+    .map(Number)
+    .sort((a, b) => a - b);
 
-    div.innerHTML = `
+  // STEP 3: Render modules + notes
+  sortedModules.forEach((moduleNumber) => {
+    const moduleSection = document.createElement("div");
+    moduleSection.classList.add("module-section");
+
+    // Module heading
+    const heading = document.createElement("h2");
+    heading.innerText = `Module ${moduleNumber}`;
+    moduleSection.appendChild(heading);
+
+    // Notes inside module
+    grouped[moduleNumber].forEach((note) => {
+      const div = document.createElement("div");
+      div.classList.add("admin-note");
+
+      div.innerHTML = `
     <div class="note-info">
       <h3>${note.title}</h3>
       <p>${note.subject}</p>
@@ -128,52 +144,42 @@ sortedModules.forEach(moduleNumber => {
     </div>
     `;
 
-    moduleSection.appendChild(div);
+      moduleSection.appendChild(div);
+    });
+
+    container.appendChild(moduleSection);
   });
-
-  container.appendChild(moduleSection);
-});
-
 }
 
 document.getElementById("filterSubject").addEventListener("change", loadNotes);
 document.getElementById("filterYear").addEventListener("change", loadNotes);
 
-
 loadNotes();
 
-async function deleteNote(id){
+async function deleteNote(id) {
+  const token = localStorage.getItem("token");
 
-const token = localStorage.getItem("token");
+  if (!confirm("Delete this note?")) return;
 
-if(!confirm("Delete this note?")) return;
+  try {
+    await fetch(`https://nerdy-notes-backend.onrender.com/api/notes/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-try{
-
-await fetch(`https://nerdy-notes-backend.onrender.com/api/notes/${id}`,{
-method:"DELETE",
-headers:{
-Authorization:`Bearer ${token}`
-}
-});
-
-loadNotes();
-
-}catch(error){
-
-console.error(error);
-
+    loadNotes();
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-}
+function previewNote(fileUrl) {
+  if (!fileUrl) {
+    alert("File not found");
+    return;
+  }
 
-function previewNote(fileUrl){
-
-if(!fileUrl){
-alert("File not found");
-return;
-}
-
-window.open("/preview.html?file=" + encodeURIComponent(fileUrl), "_blank");
-
+  window.open("/preview.html?file=" + encodeURIComponent(fileUrl), "_blank");
 }
