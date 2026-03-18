@@ -175,11 +175,11 @@ async function deleteNote(id) {
   }
 }
 
-function previewNote(fileUrl) {
-  if (!fileUrl) {
-    alert("File not found");
+window.previewNote = function (noteId) {
+  if (!noteId) {
+    alert("Invalid note");
     return;
   }
 
-  window.open("/preview.html?file=" + encodeURIComponent(fileUrl), "_blank");
-}
+  window.open(`/preview.html?id=${noteId}`, "_blank");
+};
