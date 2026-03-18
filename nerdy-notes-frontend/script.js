@@ -138,11 +138,10 @@ const counters = document.querySelectorAll(".counter");
 
 function previewNote(noteId) {
   window.open(
-    `https://nerdy-notes-backend.onrender.com/api/notes/preview/${noteId}`,
+    `/preview.html?id=${noteId}`,
     "_blank"
   );
 }
-
 function startCounters() {
   counters.forEach((counter) => {
     const target = parseInt(counter.getAttribute("data-target"));
@@ -198,7 +197,9 @@ ${
   note.isPremium
     ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
     : token
-      ? `<a class="download-btn" href="${note.fileUrl}" download>Download</a>`
+      ? `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
+  Download
+</a>`
       : `<a class="login-btn" href="/login.html">Login</a>`
 }
 
