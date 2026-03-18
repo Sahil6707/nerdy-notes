@@ -184,8 +184,8 @@ router.get("/download/:id", async (req, res) => {
 
     const fileUrl = note.fileUrl;
 
-    // Fetch file as stream
     const response = await fetch(fileUrl);
+    const buffer = await response.arrayBuffer(); // ✅ correct
 
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader(
@@ -193,7 +193,7 @@ router.get("/download/:id", async (req, res) => {
       `attachment; filename="${note.title}.pdf"`
     );
 
-    response.body.pipe(res);
+    res.send(Buffer.from(buffer)); // ✅ send as buffer
 
   } catch (error) {
     console.error(error);

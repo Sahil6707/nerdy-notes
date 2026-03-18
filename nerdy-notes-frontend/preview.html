@@ -8,6 +8,7 @@
         margin: 0;
         background: #0f172a;
         height: 100vh;
+        user-select: none;
       }
 
       #pdfViewer {
@@ -15,11 +16,22 @@
         height: 100vh;
         border: none;
       }
+
+      .watermark {
+  position: fixed;
+  top: 30%;
+  left: 10%;
+  font-size: 30px;
+  opacity: 0.08;
+  transform: rotate(-20deg);
+  pointer-events: none;
+}
     </style>
   </head>
 
   <body>
     <iframe id="pdfViewer"></iframe>
+    <div class="watermark">NerdyNotes • User</div>
 
     <script>
     const params = new URLSearchParams(window.location.search);
@@ -30,17 +42,21 @@ if (id) {
 
   document.getElementById("pdfViewer").src = url + "#toolbar=0";
 }
-      // Disable right click
-      document.addEventListener("contextmenu", function (e) {
-        e.preventDefault();
-      });
+  // Disable right click
+document.addEventListener("contextmenu", (e) => e.preventDefault());
 
-      // Disable Ctrl+S
-      document.addEventListener("keydown", function (e) {
-        if (e.ctrlKey && (e.key === "s" || e.key === "S")) {
-          e.preventDefault();
-        }
-      });
+// Disable Ctrl+S, Ctrl+P
+document.addEventListener("keydown", (e) => {
+  if (
+    (e.ctrlKey && (e.key === "s" || e.key === "S")) ||
+    (e.ctrlKey && (e.key === "p" || e.key === "P"))
+  ) {
+    e.preventDefault();
+  }
+});
+
+// Block text selection
+document.addEventListener("selectstart", (e) => e.preventDefault());
     </script>
   </body>
 </html>
