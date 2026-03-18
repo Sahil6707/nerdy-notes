@@ -293,6 +293,6 @@ window.addEventListener("load", () => {
     if(!triggered){
       triggerPopup();
     }
-  }, 3500); // ⬅️ increased delay
+  }, 9500); // ⬅️ increased delay
 
 });
