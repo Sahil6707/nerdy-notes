@@ -136,7 +136,7 @@ window.addEventListener("load", revealOnScroll);
 
 const counters = document.querySelectorAll(".counter");
 
-function previewNote(noteId) {
+window.previewNote = function (noteId) {
   window.open(
     `/preview.html?id=${noteId}`,
     "_blank"
@@ -212,6 +212,13 @@ ${
   } catch (error) {
     console.error("Failed to load notes", error);
   }
+}
+
+window.downloadNote = function (noteId) {
+  window.open(
+    `https://nerdy-notes-backend.onrender.com/api/notes/download/${noteId}`,
+    "_blank"
+  );
 }
 
 loadNotes();
