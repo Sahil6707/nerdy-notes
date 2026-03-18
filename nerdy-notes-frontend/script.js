@@ -264,36 +264,35 @@ window.closePopup = function(){
   }
 }
 
-// SHOW AFTER 3 SEC (ONLY ONCE)
 window.addEventListener("load", () => {
 
   const token = localStorage.getItem("token");
-
-  if(token || localStorage.getItem("popupShown")) return;
+  if(token) return;
 
   let triggered = false;
 
   function triggerPopup(){
     if(triggered) return;
-
     triggered = true;
 
     const popup = document.getElementById("loginPopup");
-
     if(popup && popup.classList.contains("hidden")){
       showPopup();
-      localStorage.setItem("popupShown", "true");
     }
   }
 
-  // 🔥 Trigger 1: user scrolls
+  // 🔥 1. MAIN TRIGGER → SCROLL
   window.addEventListener("scroll", () => {
-    if(window.scrollY > 100){
+    if(window.scrollY > 120){
       triggerPopup();
     }
   });
 
-  // 🔥 Trigger 2: fallback after delay
-  setTimeout(triggerPopup, 1500);
+  // 🔥 2. FALLBACK → ONLY if user inactive
+  setTimeout(() => {
+    if(!triggered){
+      triggerPopup();
+    }
+  }, 3500); // ⬅️ increased delay
 
 });
