@@ -183,21 +183,23 @@ async function loadNotes() {
 
   const token = localStorage.getItem("token");
 
-  card.innerHTML = `
+ card.innerHTML = `
 <h3>${note.title}</h3>
 <p>${note.subject}</p>
 
 <div class="note-actions">
+
+<!-- Preview ALWAYS -->
+<a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">
+  Preview
+</a>
 
 ${
   note.isPremium
     ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
     : token
       ? `<a class="download-btn" href="${note.fileUrl}" download>Download</a>`
-  : `
-<a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">Preview</a>
-<a class="login-btn" href="/login.html">Login</a>
-`
+      : `<a class="login-btn" href="/login.html">Login</a>`
 }
 
 </div>
