@@ -3,7 +3,6 @@ const router = express.Router();
 const Note = require("../models/Note");
 const authMiddleware = require("../middlewares/authMiddleware");
 const Purchase = require("../models/Purchase");
-const upload = require("../middlewares/upload");
 
 
 const fs = require("fs");
@@ -12,32 +11,58 @@ const path = require("path");
 console.log("notesRoutes loaded");
 
 // Upload notes
+const supabase = require("../config/supabase");
+
 router.post(
   "/upload",
   authMiddleware,
   upload.single("pdf"),
   async (req, res) => {
-    console.log("FILE DEBUG:", req.file);
     try {
-
       if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
       }
+
       const { title, subject, year, module, type } = req.body;
-     const fileUrl = req.file.path;
+
+      // unique file name
+      const fileName = `${Date.now()}-${req.file.originalname}`;
+
+      // upload to supabase
+      const { data, error } = await supabase.storage
+        .from("notes")
+        .upload(fileName, req.file.buffer, {
+          contentType: "application/pdf",
+        });
+
+      if (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Upload failed" });
+      }
+
+      // get public URL
+      const { data: publicUrlData } = supabase.storage
+        .from("notes")
+        .getPublicUrl(fileName);
+
+      const fileUrl = publicUrlData.publicUrl;
+
+      // save in DB
       const note = new Note({
         title,
         subject,
-        fileUrl,
         year,
         module,
+        fileUrl,
         isPremium: type === "premium",
-        uploadedBy: req.user.id
+        uploadedBy: req.user.id,
       });
+
       await note.save();
+
       res.json({
         message: "Note uploaded successfully",
-        note
+        note,
       });
     } catch (error) {
       console.error(error);
