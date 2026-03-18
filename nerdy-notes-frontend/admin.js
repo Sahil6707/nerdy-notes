@@ -78,31 +78,60 @@ const container = document.getElementById("notesList");
 
 container.innerHTML = "";
 
+// STEP 1: Group notes by module
+const grouped = {};
+
 notes.forEach(note => {
+  if (!grouped[note.module]) {
+    grouped[note.module] = [];
+  }
+  grouped[note.module].push(note);
+});
 
-const div = document.createElement("div");
+// STEP 2: Sort modules
+const sortedModules = Object.keys(grouped)
+  .map(Number)
+  .sort((a, b) => a - b);
 
-div.classList.add("admin-note");
+// STEP 3: Render modules + notes
+sortedModules.forEach(moduleNumber => {
 
-div.innerHTML = `
-<div class="note-info">
-  <h3>${note.title}</h3>
-  <p>${note.subject}</p>
-  <p>Year ${note.year} • Module ${note.module}</p>
-</div>
+  const moduleSection = document.createElement("div");
+  moduleSection.classList.add("module-section");
 
-<div class="note-actions">
-  <button class="preview-btn-a" onclick="previewNote('${note.fileUrl}')">
-    Preview
-  </button>
+  // Module heading
+  const heading = document.createElement("h2");
+  heading.innerText = `Module ${moduleNumber}`;
+  moduleSection.appendChild(heading);
 
-  <button class="delete-btn-a" onclick="deleteNote('${note._id}')">
-    Delete
-  </button>
-</div>
-`;
-container.appendChild(div);
+  // Notes inside module
+  grouped[moduleNumber].forEach(note => {
 
+    const div = document.createElement("div");
+    div.classList.add("admin-note");
+
+    div.innerHTML = `
+    <div class="note-info">
+      <h3>${note.title}</h3>
+      <p>${note.subject}</p>
+      <p>Year ${note.year} • Module ${note.module}</p>
+    </div>
+
+    <div class="note-actions">
+      <button class="preview-btn-a" onclick="previewNote('${note.fileUrl}')">
+        Preview
+      </button>
+
+      <button class="delete-btn-a" onclick="deleteNote('${note._id}')">
+        Delete
+      </button>
+    </div>
+    `;
+
+    moduleSection.appendChild(div);
+  });
+
+  container.appendChild(moduleSection);
 });
 
 }
