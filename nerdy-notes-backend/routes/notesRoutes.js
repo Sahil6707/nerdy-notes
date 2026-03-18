@@ -3,12 +3,12 @@ const router = express.Router();
 const Note = require("../models/Note");
 const authMiddleware = require("../middlewares/authMiddleware");
 const Purchase = require("../models/Purchase");
+const upload = require("../middlewares/upload");
 
 
-const fs = require("fs");
-const path = require("path");
 
-console.log("notesRoutes loaded");
+console.log("FILE:", req.file);
+console.log("BODY:", req.body);
 
 // Upload notes
 const supabase = require("../config/supabase");
@@ -29,11 +29,11 @@ router.post(
       const fileName = `${Date.now()}-${req.file.originalname}`;
 
       // upload to supabase
-      const { data, error } = await supabase.storage
-        .from("notes")
-        .upload(fileName, req.file.buffer, {
-          contentType: "application/pdf",
-        });
+   const { data, error } = await supabase.storage
+  .from("notes")
+  .upload(fileName, req.file.buffer, {
+    contentType: req.file.mimetype,
+  });
 
       if (error) {
         console.error(error);
