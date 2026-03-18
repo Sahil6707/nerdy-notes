@@ -182,13 +182,18 @@ router.get("/download/:id", async (req, res) => {
       return res.status(404).json({ message: "Note not found" });
     }
 
-    // Force download
+    const fileUrl = note.fileUrl;
+
+    // Fetch file as stream
+    const response = await fetch(fileUrl);
+
+    res.setHeader("Content-Type", "application/pdf");
     res.setHeader(
       "Content-Disposition",
       `attachment; filename="${note.title}.pdf"`
     );
 
-    return res.redirect(note.fileUrl);
+    response.body.pipe(res);
 
   } catch (error) {
     console.error(error);
