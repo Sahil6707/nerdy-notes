@@ -105,12 +105,25 @@ localStorage.setItem("token",data.token);
 localStorage.setItem("user",JSON.stringify(data.user));
 
 
+
+// CHECK if user had clicked download before login
+const pending = localStorage.getItem("pendingDownload");
+
+if (pending) {
+  window.open(
+    `https://nerdy-notes-backend.onrender.com/api/notes/download/${pending}`,
+    "_blank"
+  );
+
+  localStorage.removeItem("pendingDownload");
+}
+
+
 /* REDIRECT */
 
-setTimeout(()=>{
-window.location.href="index.html";
-},1000);
-
+setTimeout(() => {
+  window.location.href = "index.html";
+}, 1500);
 
 }catch(error){
 

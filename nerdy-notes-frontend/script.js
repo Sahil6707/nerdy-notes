@@ -188,7 +188,6 @@ async function loadNotes() {
 
 <div class="note-actions">
 
-<!-- Preview ALWAYS -->
 <a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">
   Preview
 </a>
@@ -196,11 +195,9 @@ async function loadNotes() {
 ${
   note.isPremium
     ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
-    : token
-      ? `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
-  Download
-</a>`
-      : `<a class="login-btn" href="/login.html">Login</a>`
+    : `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
+        Download
+      </a>`
 }
 
 </div>
@@ -218,16 +215,20 @@ window.downloadNote = function (noteId) {
 
   const token = localStorage.getItem("token");
 
-  if(!token){
-    showPopup(); // 🔥 THIS is the smart trigger
+  if (!token) {
+    // 🔥 SAVE what user wanted
+    localStorage.setItem("pendingDownload", noteId);
+
+    showPopup();
     return;
   }
 
+  // ✅ Logged in → direct download
   window.open(
     `https://nerdy-notes-backend.onrender.com/api/notes/download/${noteId}`,
     "_blank"
   );
-}
+};
 
 loadNotes();
 window.addEventListener("load", startCounters);
