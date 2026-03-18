@@ -2227,6 +2227,11 @@ opacity:0;
 
 
 /* POPUP OVERLAY */
+
+.hidden{
+display:none;
+}
+
 .login-popup{
 position:fixed;
 top:0;

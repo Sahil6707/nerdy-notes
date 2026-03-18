@@ -216,14 +216,13 @@ window.downloadNote = function (noteId) {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    // 🔥 SAVE what user wanted
     localStorage.setItem("pendingDownload", noteId);
+    localStorage.setItem("fromDownloadPopup", "true");
 
-    showPopup();
+    showPopup(true); // 🔥 THIS IS CRITICAL
     return;
   }
 
-  // ✅ Logged in → direct download
   window.open(
     `https://nerdy-notes-backend.onrender.com/api/notes/download/${noteId}`,
     "_blank"
@@ -244,19 +243,22 @@ if (userData && userData.role === "admin") {
 
 // ===== LOGIN POPUP SYSTEM =====
 
-function showPopup(){
+function showPopup(force = false){
   const popup = document.getElementById("loginPopup");
+
   if(popup){
+    // 🔥 force means ignore popupShown
+    if(!force && localStorage.getItem("popupShown")) return;
+
     popup.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("no-scroll");
   }
 }
-
 window.closePopup = function(){
   const popup = document.getElementById("loginPopup");
   if(popup){
     popup.classList.add("hidden");
-    document.body.style.overflow = "auto";
+    document.body.classList.remove("no-scroll");
 
     localStorage.setItem("popupShown", "true");
   }
