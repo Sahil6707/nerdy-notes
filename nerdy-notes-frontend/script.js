@@ -283,7 +283,7 @@ window.addEventListener("load", () => {
 
   // 🔥 1. MAIN TRIGGER → SCROLL
   window.addEventListener("scroll", () => {
-    if(window.scrollY > 120){
+    if(window.scrollY > 180){
       triggerPopup();
     }
   });
@@ -293,6 +293,6 @@ window.addEventListener("load", () => {
     if(!triggered){
       triggerPopup();
     }
-  }, 9500); // ⬅️ increased delay
+  }, 3500); // ⬅️ increased delay
 
 });
