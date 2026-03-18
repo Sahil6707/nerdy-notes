@@ -212,7 +212,7 @@ ${
 }
 
 window.downloadNote = function (noteId) {
-
+  console.log("DOWNLOAD CLICKED", noteId);
   const token = localStorage.getItem("token");
 
   if (!token) {
