@@ -270,11 +270,18 @@ window.addEventListener("load", () => {
 
   const token = localStorage.getItem("token");
 
+  // 🔥 ONLY run if NO popup currently visible
   if(!token && !localStorage.getItem("popupShown")){
     setTimeout(() => {
-      showPopup();
-      localStorage.setItem("popupShown", "true");
-    }, 2500);
+
+      const popup = document.getElementById("loginPopup");
+
+      if(popup && popup.classList.contains("hidden")){
+        showPopup();
+        localStorage.setItem("popupShown", "true");
+      }
+
+    }, 3000);
   }
 
 });
