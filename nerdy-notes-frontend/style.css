@@ -508,29 +508,36 @@ top:-1px;
   }
 }
 
-
 body.light-mode .external-wrapper {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: #fffdf7; /* soft warm white */
+  border: 1px solid #f1e5c9;
 
-  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 25px rgba(180, 140, 50, 0.08);
 }
 
 body.light-mode .external-label {
-  color: #64748b;
+  color: #8b6f2f; /* warm muted gold */
 }
 
+/* buttons */
 body.light-mode .external-links a {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: #1e293b;
+  background: #fffaf0;
+  border: 1px solid #e8d9a8;
+  color: #5c4a1f;
+
+  transition: all 0.25s ease;
 }
 
+/* hover (IMPORTANT – GOLD FEEL) */
 body.light-mode .external-links a:hover {
-  background: #e0f2fe;
-  border-color: #38bdf8;
+  background: #fef3c7; /* soft gold */
+  border-color: #d4af37;
 
-  box-shadow: 0 6px 18px rgba(56,189,248,0.2);
+  color: #3b2f0e;
+
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
+
+  transform: translateY(-2px);
 }
 
 .theme-toggle:hover {
