@@ -135,16 +135,13 @@ window.addEventListener("load", revealOnScroll);
 // });
 
 const counters = document.querySelectorAll(".counter");
-window.previewNote = function (noteId) {
-  const user = JSON.parse(localStorage.getItem("user"));
 
-  // if logged in → allow preview
-  window.open(`/preview.html?id=${noteId}`, "_blank");
-};
 function startCounters() {
   counters.forEach((counter) => {
     const target = parseInt(counter.getAttribute("data-target"));
+
     let current = 0;
+    counter.innerText = "0";
 
     const increment = target / 90;
 
@@ -165,15 +162,17 @@ function startCounters() {
 
 const statsSection = document.getElementById("statsSection");
 
-let started = false; // 🔥 prevent repeat
+let started = false;
 
 const observer = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting && !started) {
-    startCounters();
-    started = true;
-  }
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !started) {
+      startCounters();
+      started = true;
+    }
+  });
 }, {
-  threshold: 0.3 // 🔥 triggers when 50% visible
+  threshold: 0.5
 });
 
 if (statsSection) {
