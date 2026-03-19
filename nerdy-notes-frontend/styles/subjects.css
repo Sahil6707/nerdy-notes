@@ -1,8 +1,4 @@
 
-* {
-  pointer-events: auto !important;
-}
-
 /* maths html css */
 /* Chapters Section */
 .chapters-container {
@@ -45,22 +41,6 @@ gap:10px;
 min-height:160px;
 
 transition:all 0.25s ease;
-}
-
-.download-btn{
-background:linear-gradient(90deg,#4da3ff,#7c5cff);
-color:white;
-
-padding:10px 20px;
-border-radius:20px;
-
-text-decoration:none;
-font-size:14px;
-font-weight:500;
-
-display:inline-block;
-
-margin-top:8px;
 }
 
 .note-card a{
@@ -347,30 +327,6 @@ padding:20px;
 
 }
 
-.preview-btn {
-  background: #3b82f6;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  text-decoration: none;
-  margin-right: 10px;
-  font-weight: 500;
-  transition: 0.2s;
-  font-size: 12px;
-}
-
-.preview-btn:hover {
-  background: #2563eb;
-}
-
-body.light-mode .preview-btn {
-  background: #d4af37;
-  color: black;
-}
-
-body.light-mode .preview-btn:hover {
-  background: #b8962e;
-}
 
 /* MOBILE SUBJECT PAGE */
 
