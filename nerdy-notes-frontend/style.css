@@ -500,12 +500,13 @@ top:-1px;
   .external-links {
     flex-direction: column;
     gap: 10px;
+    align-items: center;
   }
 
   .external-links a {
     width: 100%;
     justify-content: center;
-
+    max-width: 280px;
     font-size: 13px;
     padding: 12px;
   }
