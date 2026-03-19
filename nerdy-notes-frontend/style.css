@@ -666,6 +666,7 @@ transform:scale(1.2);
   font-weight: 500;
 
   transition: all 0.25s ease;
+  overflow: visible; 
 }
 
 .filter-btn:hover {
@@ -679,7 +680,14 @@ transform:scale(1.2);
     0 0 0 2px rgba(96,165,250,0.2);
 }
 
-overflow: visible; 
+.filter-btn.active {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: white;
+
+  box-shadow:
+    0 4px 12px rgba(59,130,246,0.4);
+}
+
 .filter-btn.active:hover {
   transform: translateY(-2px);
 
