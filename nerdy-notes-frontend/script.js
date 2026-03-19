@@ -89,50 +89,8 @@ if (token && user && welcomeText) {
     <span>Welcome, ${displayName}</span>
   `;
 }
-});
 
-const reveals = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-  const windowHeight = window.innerHeight;
-
-  reveals.forEach((el) => {
-    const elementTop = el.getBoundingClientRect().top;
-
-    if (elementTop < windowHeight - 100) {
-      el.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
-
-// document.querySelectorAll(".note-card").forEach((card) => {
-//   card.addEventListener("click", function (e) {
-//     const circle = document.createElement("span");
-//     const diameter = Math.max(card.clientWidth, card.clientHeight);
-//     const radius = diameter / 2;
-
-//     circle.style.width = circle.style.height = `${diameter}px`;
-//     circle.style.left = `${e.offsetX - radius}px`;
-//     circle.style.top = `${e.offsetY - radius}px`;
-//     circle.classList.add("ripple");
-
-//     const oldRipple = card.querySelector(".ripple");
-//     if (oldRipple) oldRipple.remove();
-
-//     card.appendChild(circle);
-
-//     const link = card.getAttribute("data-link");
-
-//     if (link) {
-//       setTimeout(() => {
-//         window.location.href = link;
-//       }, 300);
-//     }
-//   });
-// });
+// ===== STATS COUNTER =====
 
 const counters = document.querySelectorAll(".counter");
 
@@ -164,20 +122,37 @@ const statsSection = document.getElementById("statsSection");
 
 let started = false;
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !started) {
+if (statsSection) {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !started) {
       startCounters();
       started = true;
     }
-  });
-}, {
-  threshold: 0.5
-});
+  }, { threshold: 0.4 });
 
-if (statsSection) {
   observer.observe(statsSection);
 }
+});
+
+
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+  const windowHeight = window.innerHeight;
+
+  reveals.forEach((el) => {
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+
 
 async function loadNotes() {
   try {
