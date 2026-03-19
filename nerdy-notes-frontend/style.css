@@ -44,7 +44,7 @@ section {
 }
 
 .hero {
-  padding: 100px 20px 60px;
+  padding: 80px 20px 50px;
 }
 
 .notes-container {
@@ -509,6 +509,11 @@ backdrop-filter:blur(10px);
 .hero-content {
   max-width: 750px;
   margin: auto;
+
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 }
 
 .hero h2 {
@@ -538,11 +543,11 @@ backdrop-filter:blur(10px);
 }
 
 .hero-subtitle {
-  color: #666;
-  font-size: 16px;
+  color: #94a3b8;
+  font-size: 15px;
   margin-bottom: 30px;
   user-select: none;
-  margin-top: 10px;
+  margin-top: -5px;
   opacity:0.8;
 }
 
@@ -597,7 +602,8 @@ transform:scale(1.2);
   width: 60%;
   max-width: 550px;
   padding: 14px 20px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   border-radius: 40px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.05);
@@ -633,6 +639,7 @@ transform:scale(1.2);
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .filter-btn {

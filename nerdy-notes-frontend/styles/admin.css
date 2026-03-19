@@ -304,6 +304,7 @@ border:1px solid rgba(255,255,255,0.08);
 .module-section {
   margin-bottom: 50px;
   padding-left: 5px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .module-section h2 {
