@@ -271,44 +271,57 @@ window.addEventListener("load", () => {
   }, delay);
 });
 
-// ===== SIMPLE STATS (SCROLL BASED) =====
+// ===== FINAL WORKING STATS =====
 
-const counters = document.querySelectorAll(".counter");
-const statsSection = document.getElementById("statsSection");
+window.addEventListener("load", () => {
 
-let started = false;
+  const counters = document.querySelectorAll(".counter");
+  const statsSection = document.getElementById("statsSection");
 
-function startCounters() {
-  counters.forEach((counter) => {
-    const target = parseInt(counter.getAttribute("data-target"));
-
-    let current = 0;
-    counter.innerText = "0";
-
-    const increment = target / 60;
-
-    function update() {
-      current += increment;
-
-      if (current < target) {
-        counter.innerText = Math.floor(current);
-        requestAnimationFrame(update);
-      } else {
-        counter.innerText = target + "+";
-      }
-    }
-
-    update();
-  });
-}
-
-window.addEventListener("scroll", () => {
-  if (!statsSection || started) return;
-
-  const rect = statsSection.getBoundingClientRect();
-
-  if (rect.top < window.innerHeight - 100) {
-    startCounters();
-    started = true;
+  if (!counters.length || !statsSection) {
+    console.log("Stats not found");
+    return;
   }
+
+  let started = false;
+
+  function startCounters() {
+    counters.forEach((counter) => {
+      const target = parseInt(counter.getAttribute("data-target"));
+
+      let current = 0;
+      counter.innerText = "0";
+
+      const increment = target / 60;
+
+      function update() {
+        current += increment;
+
+        if (current < target) {
+          counter.innerText = Math.floor(current);
+          requestAnimationFrame(update);
+        } else {
+          counter.innerText = target + "+";
+        }
+      }
+
+      update();
+    });
+  }
+
+  function checkScroll() {
+    if (started) return;
+
+    const rect = statsSection.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight - 100) {
+      startCounters();
+      started = true;
+    }
+  }
+
+  window.addEventListener("scroll", checkScroll);
+
+  // 🔥 ALSO CHECK ON LOAD
+  checkScroll();
 });
