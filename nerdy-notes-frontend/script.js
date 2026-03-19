@@ -138,11 +138,6 @@ const counters = document.querySelectorAll(".counter");
 window.previewNote = function (noteId) {
   const user = JSON.parse(localStorage.getItem("user"));
 
-  if (!user) {
-    showPopup(true); // 🔥 show popup instead
-    return;
-  }
-
   // if logged in → allow preview
   window.open(`/preview.html?id=${noteId}`, "_blank");
 };
