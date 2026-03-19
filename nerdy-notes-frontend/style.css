@@ -1653,6 +1653,7 @@ display:none;
 
 #welcome-text span{
 white-space:nowrap;
+max-width: 150px;
 }
 
 .college-badge{
