@@ -123,15 +123,26 @@ const statsSection = document.getElementById("statsSection");
 let started = false;
 
 if (statsSection) {
+
   const observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting && !started) {
       startCounters();
       started = true;
     }
-  }, { threshold: 0.4 });
+  }, { threshold: 0 });
 
   observer.observe(statsSection);
+
+  // 🔥 FORCE CHECK ON LOAD (THIS FIXES YOUR CASE)
+  const rect = statsSection.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  if (rect.top < windowHeight && !started) {
+    startCounters();
+    started = true;
+  }
 }
+
 });
 
 
