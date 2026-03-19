@@ -90,59 +90,6 @@ if (token && user && welcomeText) {
   `;
 }
 
-// ===== STATS COUNTER =====
-
-const counters = document.querySelectorAll(".counter");
-
-function startCounters() {
-  counters.forEach((counter) => {
-    const target = parseInt(counter.getAttribute("data-target"));
-
-    let current = 0;
-    counter.innerText = "0";
-
-    const increment = target / 90;
-
-    const update = () => {
-      current += increment;
-
-      if (current < target) {
-        counter.innerText = Math.floor(current);
-        requestAnimationFrame(update);
-      } else {
-        counter.innerText = target + "+";
-      }
-    };
-
-    update();
-  });
-}
-
-const statsSection = document.getElementById("statsSection");
-
-let started = false;
-
-if (statsSection) {
-
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !started) {
-      startCounters();
-      started = true;
-    }
-  }, { threshold: 0 });
-
-  observer.observe(statsSection);
-
-  // 🔥 FORCE CHECK ON LOAD (THIS FIXES YOUR CASE)
-  const rect = statsSection.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-
-  if (rect.top < windowHeight && !started) {
-    startCounters();
-    started = true;
-  }
-}
-
 });
 
 
@@ -322,4 +269,56 @@ window.addEventListener("load", () => {
       loader.style.display = "none";
     }, 300);
   }, delay);
+});
+
+
+// ===== FINAL STATS (WORKING) =====
+
+window.addEventListener("load", () => {
+  const counters = document.querySelectorAll(".counter");
+  const statsSection = document.getElementById("statsSection");
+
+  if (!counters.length || !statsSection) return;
+
+  let started = false;
+
+  function startCounters() {
+    counters.forEach((counter) => {
+      const target = parseInt(counter.getAttribute("data-target"));
+
+      let current = 0;
+      counter.innerText = "0";
+
+      const increment = target / 80;
+
+      function update() {
+        current += increment;
+
+        if (current < target) {
+          counter.innerText = Math.floor(current);
+          requestAnimationFrame(update);
+        } else {
+          counter.innerText = target + "+";
+        }
+      }
+
+      update();
+    });
+  }
+
+  function checkAndStart() {
+    const rect = statsSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (rect.top < windowHeight - 100 && !started) {
+      startCounters();
+      started = true;
+    }
+  }
+
+  // 🔥 trigger on scroll
+  window.addEventListener("scroll", checkAndStart);
+
+  // 🔥 trigger on load (important)
+  checkAndStart();
 });
