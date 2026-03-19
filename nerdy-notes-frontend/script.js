@@ -297,6 +297,21 @@ window.addEventListener("load", () => {
 
 });
 
+const startTime = Date.now();
+
 window.addEventListener("load", () => {
-  document.getElementById("loader").style.display = "none";
+  const loader = document.getElementById("loader");
+
+  const elapsed = Date.now() - startTime;
+  const minTime = 600; // 🔥 adjust (500–800ms ideal)
+
+  const delay = Math.max(minTime - elapsed, 0);
+
+  setTimeout(() => {
+    loader.style.opacity = "0";
+
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 300); // fade out
+  }, delay);
 });

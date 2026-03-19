@@ -102,7 +102,7 @@ body.dark .chapter-card {
 }
 
 /* Light Mode */
-body.light .chapter-card {
+.chapter-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
@@ -110,12 +110,12 @@ body.light .chapter-card {
     transition: all 0.3s ease;
 }
 
-body.light .chapter-card button {
+body.light-mode .chapter-card button {
     background: #2563eb;
     color: white;
 }
 
-body.light .chapter-card button:hover {
+body.light-mode .chapter-card button:hover {
     background: #1d4ed8;
 }
 
@@ -124,7 +124,7 @@ body.light .chapter-card button:hover {
     transform: translateY(-6px);
 }
 
-body.light .chapter-card:hover {
+body.light-mode .chapter-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
@@ -156,11 +156,11 @@ body.dark .view-btn {
     color: white;
 }
 /* Light Button */
-body.light .view-btn {
+body.light-mode .view-btn {
     background: #2563eb;
     color: white;
 }
-body.light .view-btn:hover {
+body.light-mode .view-btn:hover {
     background: #1d4ed8;
 }
 
@@ -206,7 +206,7 @@ pointer-events: none;
     opacity: 0.7;
 }
 
-body.light .subject-hero h2 {
+body.light-mode .subject-hero h2 {
     color: #1e293b;
 }
 
@@ -221,7 +221,7 @@ body {
     letter-spacing: -0.5px;
     margin-bottom: 12px;
 }
-body.light .subject-hero h2 {
+body.light-mode .subject-hero h2 {
     font-family: 'Poppins', sans-serif;
     font-size: 38px;
     color: #0f172a;
@@ -242,7 +242,7 @@ body.light .subject-hero h2 {
     position: relative;
 }
 
-body.light .subject-hero p {
+body.light-mode .subject-hero p {
     color: #64748b;
      font-family: 'Poppins', sans-serif;
     font-size: 16px;
@@ -403,4 +403,12 @@ box-shadow:0 0 22px rgba(56,189,248,0.4);
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+.loader {
+  transition: opacity 0.3s ease;
+}
+
+body.light-mode .loader {
+  background: #f8fafc;
 }
