@@ -296,3 +296,7 @@ window.addEventListener("load", () => {
   }, 3500); // ⬅️ increased delay
 
 });
+
+window.addEventListener("load", () => {
+  document.getElementById("loader").style.display = "none";
+});
