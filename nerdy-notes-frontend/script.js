@@ -72,7 +72,7 @@ function applyFilters() {
   }
 const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
-const welcomeText = document.getElementById("welcome-text");
+const welcomeText = document.getElementById("welcomeUser");
 
 if (token && user && welcomeText) {
 
@@ -139,7 +139,7 @@ window.previewNote = function (noteId) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user) {
-    openPopup(); // 🔥 show popup instead
+    showPopup(true); // 🔥 show popup instead
     return;
   }
 
@@ -218,11 +218,13 @@ ${
 window.downloadNote = function (noteId) {
   const token = localStorage.getItem("token");
 
+  
+
   if (!token) {
     localStorage.setItem("pendingDownload", noteId);
     localStorage.setItem("fromDownloadPopup", "true");
 
-    openPopup(true); // 🔥 THIS IS CRITICAL
+    showPopup(true);// 🔥 THIS IS CRITICAL
     return;
   }
 
