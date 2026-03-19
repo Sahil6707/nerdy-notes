@@ -1,5 +1,7 @@
 
-
+* {
+  pointer-events: auto !important;
+}
 
 /* maths html css */
 /* Chapters Section */
