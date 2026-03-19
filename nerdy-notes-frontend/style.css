@@ -659,6 +659,7 @@ text-align:center;
   flex-direction: column;
   align-items: center;
   gap: 18px;
+  user-select: none;
 }
 
 .hero h2 {
