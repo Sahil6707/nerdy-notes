@@ -271,54 +271,44 @@ window.addEventListener("load", () => {
   }, delay);
 });
 
+// ===== SIMPLE STATS (SCROLL BASED) =====
 
-// ===== FINAL STATS (WORKING) =====
+const counters = document.querySelectorAll(".counter");
+const statsSection = document.getElementById("statsSection");
 
-window.addEventListener("load", () => {
-  const counters = document.querySelectorAll(".counter");
-  const statsSection = document.getElementById("statsSection");
+let started = false;
 
-  if (!counters.length || !statsSection) return;
+function startCounters() {
+  counters.forEach((counter) => {
+    const target = parseInt(counter.getAttribute("data-target"));
 
-  let started = false;
+    let current = 0;
+    counter.innerText = "0";
 
-  function startCounters() {
-    counters.forEach((counter) => {
-      const target = parseInt(counter.getAttribute("data-target"));
+    const increment = target / 60;
 
-      let current = 0;
-      counter.innerText = "0";
+    function update() {
+      current += increment;
 
-      const increment = target / 80;
-
-      function update() {
-        current += increment;
-
-        if (current < target) {
-          counter.innerText = Math.floor(current);
-          requestAnimationFrame(update);
-        } else {
-          counter.innerText = target + "+";
-        }
+      if (current < target) {
+        counter.innerText = Math.floor(current);
+        requestAnimationFrame(update);
+      } else {
+        counter.innerText = target + "+";
       }
-
-      update();
-    });
-  }
-
-  function checkAndStart() {
-    const rect = statsSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    if (rect.top < windowHeight - 100 && !started) {
-      startCounters();
-      started = true;
     }
+
+    update();
+  });
+}
+
+window.addEventListener("scroll", () => {
+  if (!statsSection || started) return;
+
+  const rect = statsSection.getBoundingClientRect();
+
+  if (rect.top < window.innerHeight - 100) {
+    startCounters();
+    started = true;
   }
-
-  // 🔥 trigger on scroll
-  window.addEventListener("scroll", checkAndStart);
-
-  // 🔥 trigger on load (important)
-  checkAndStart();
 });
