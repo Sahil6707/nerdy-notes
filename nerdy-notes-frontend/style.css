@@ -2568,3 +2568,7 @@ body.light-mode .footer-bottom {
 
   text-decoration: none;
 }
+
+body.light-mode .loader {
+  background: #f8fafc;
+}
