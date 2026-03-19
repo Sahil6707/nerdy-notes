@@ -540,6 +540,15 @@ body.light-mode .external-links a:hover {
   transform: translateY(-2px);
 }
 
+body.light-mode .external-wrapper::before {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(212, 175, 55, 0.7),
+    transparent
+  );
+}
+
 .theme-toggle:hover {
   border-color: #38bdf8;
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
