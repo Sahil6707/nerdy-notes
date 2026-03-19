@@ -135,13 +135,17 @@ window.addEventListener("load", revealOnScroll);
 // });
 
 const counters = document.querySelectorAll(".counter");
-
 window.previewNote = function (noteId) {
-  window.open(
-    `/preview.html?id=${noteId}`,
-    "_blank"
-  );
-}
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user) {
+    openPopup(); // 🔥 show popup instead
+    return;
+  }
+
+  // if logged in → allow preview
+  window.open(`/preview.html?id=${noteId}`, "_blank");
+};
 function startCounters() {
   counters.forEach((counter) => {
     const target = parseInt(counter.getAttribute("data-target"));
@@ -212,14 +216,13 @@ ${
 }
 
 window.downloadNote = function (noteId) {
-  console.log("DOWNLOAD CLICKED", noteId);
   const token = localStorage.getItem("token");
 
   if (!token) {
     localStorage.setItem("pendingDownload", noteId);
     localStorage.setItem("fromDownloadPopup", "true");
 
-    showPopup(true); // 🔥 THIS IS CRITICAL
+    openPopup(true); // 🔥 THIS IS CRITICAL
     return;
   }
 
