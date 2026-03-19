@@ -227,6 +227,10 @@ ${
   }
 }
 
+window.previewNote = function (noteId) {
+  window.open(`/preview.html?id=${noteId}`, "_blank");
+};
+
 window.downloadNote = function (noteId) {
   const token = localStorage.getItem("token");
 
@@ -247,7 +251,6 @@ window.downloadNote = function (noteId) {
 };
 
 loadNotes();
-window.addEventListener("load", startCounters);
 
 const userData = JSON.parse(localStorage.getItem("user"));
 
