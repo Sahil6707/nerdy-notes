@@ -757,7 +757,7 @@ transform:scale(1.2);
   font-size: 15px;
   outline: none;
   transition: all 0.3s ease;
-  user-select: none;
+  user-select: text;
 }
 
 /* Placeholder color */
