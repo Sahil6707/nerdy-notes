@@ -319,7 +319,7 @@ const startTime = Date.now();
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
 
-  if (!loader) return; // 🔥 FIX: prevents crash
+  if (!loader) return; // 🔥 THIS FIXES EVERYTHING
 
   const elapsed = Date.now() - startTime;
   const minTime = 600;
