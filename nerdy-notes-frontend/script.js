@@ -162,6 +162,24 @@ function startCounters() {
     update();
   });
 }
+
+const statsSection = document.getElementById("statsSection");
+
+let started = false; // 🔥 prevent repeat
+
+const observer = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting && !started) {
+    startCounters();
+    started = true;
+  }
+}, {
+  threshold: 0.3 // 🔥 triggers when 50% visible
+});
+
+if (statsSection) {
+  observer.observe(statsSection);
+}
+
 async function loadNotes() {
   try {
     const subject = document.body.dataset.subject;
@@ -302,8 +320,10 @@ const startTime = Date.now();
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
 
+  if (!loader) return; // 🔥 FIX: prevents crash
+
   const elapsed = Date.now() - startTime;
-  const minTime = 600; // 🔥 adjust (500–800ms ideal)
+  const minTime = 600;
 
   const delay = Math.max(minTime - elapsed, 0);
 
@@ -312,6 +332,6 @@ window.addEventListener("load", () => {
 
     setTimeout(() => {
       loader.style.display = "none";
-    }, 300); // fade out
+    }, 300);
   }, delay);
 });
