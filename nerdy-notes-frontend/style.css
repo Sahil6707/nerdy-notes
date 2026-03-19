@@ -642,6 +642,13 @@ transform:scale(1.2);
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 10px;
+
+    flex-wrap: nowrap;   
+  overflow-x: auto; 
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
 }
 
 .filter-btn {
