@@ -1653,7 +1653,7 @@ display:none;
 
 #welcome-text span{
 white-space:nowrap;
-max-width: 180px;
+max-width: 190px;
 }
 
 .college-badge{
@@ -1668,7 +1668,7 @@ justify-content:center;
 }
 
 #welcome-text{
-max-width:120px;
+max-width:180px;
 display:flex;
 align-items: center;
 justify-content: center;
@@ -1769,7 +1769,7 @@ background:rgba(56,189,248,0.05);
 }
 
   .welcome-text {
-    font-size: 10px;
+    font-size: 9px;
     margin-left: 50px;
     text-align: left;
     opacity:0.75;
