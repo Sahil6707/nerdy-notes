@@ -16,22 +16,13 @@
         height: 100vh;
         border: none;
       }
-      .watermark {
-  position: fixed;
-  top: 40%;
-  left: 30%;
-  font-size: 80px;
-  opacity: 0.1;
-  transform: rotate(-20deg);
-  pointer-events: none;
-}
+
 
     </style>
   </head>
 
   <body>
     <iframe id="pdfViewer"></iframe>
-    <div class="watermark">NerdyNotes</div>
     <script>
     const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
