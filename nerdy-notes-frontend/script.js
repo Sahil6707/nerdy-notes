@@ -144,11 +144,26 @@ async function loadNotes() {
   const card = document.createElement("div");
   card.classList.add("note-card");
 
-  card.innerHTML = `
-    <h3>${note.title}</h3>
-    <p>${note.subject}</p>
-    ...
-  `;
+ card.innerHTML = `
+  <div class="note-content">
+    <h3 class="note-title">${note.title}</h3>
+    <p class="note-sub">${note.subject} • Module ${note.module}</p>
+  </div>
+
+  <div class="note-actions">
+    <a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">
+      Preview
+    </a>
+
+    ${
+      note.isPremium
+        ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
+        : `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
+            Download
+          </a>`
+    }
+  </div>
+`;
 
   container.appendChild(card);
 });
