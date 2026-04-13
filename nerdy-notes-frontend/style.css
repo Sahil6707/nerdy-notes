@@ -136,6 +136,19 @@ transition:transform .2s ease, box-shadow .2s ease;
 
 }
 
+.note-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .note-card h3{
 width:100%;
 text-align:center;
