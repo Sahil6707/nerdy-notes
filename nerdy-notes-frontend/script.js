@@ -137,7 +137,7 @@ async function loadNotes() {
 
 <div class="note-actions">
 
-<a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">
+<a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}', '${note.fileUrl}')">
   Preview
 </a>
 
@@ -160,8 +160,8 @@ ${
   }
 }
 
-window.previewNote = function (noteId) {
-  window.open(`/preview.html?id=${noteId}`, "_blank");
+window.previewNote = function (noteId, fileUrl) {
+  window.open(fileUrl, "_blank");
 };
 
 window.downloadNote = function (noteId) {
