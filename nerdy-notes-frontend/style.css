@@ -2794,3 +2794,49 @@ body.light-mode .footer-bottom {
   text-decoration: none;
 }
 
+.loader {
+  display: none;
+  margin: 60px auto;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255,255,255,0.1);
+  border-top: 5px solid #00d4ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-wrapper {
+  display: none;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.spinner {
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255,255,255,0.1);
+  border-top: 5px solid #00d4ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #cbd5e1;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
