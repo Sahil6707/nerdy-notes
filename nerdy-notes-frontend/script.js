@@ -151,7 +151,7 @@ async function loadNotes() {
   </div>
 
   <div class="note-actions">
-    <a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">
+    <a class="preview-btn" href="javascript:void(0)" onclick="window.previewNote('${note._id}')">
       Preview
     </a>
 
