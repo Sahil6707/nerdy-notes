@@ -188,8 +188,20 @@ setTimeout(() => {
 }
 
 
-window.previewNote = function (noteId) {
-  window.open(`/preview.html?id=${noteId}`, "_blank");
+window.previewNote = async function (noteId) {
+  try {
+    const res = await fetch(
+      `https://nerdy-notes-backend.onrender.com/api/notes/preview/${noteId}`
+    );
+
+    const data = await res.json();
+
+    window.open(`preview.html?url=${encodeURIComponent(data.url)}`, "_blank");
+
+  } catch (error) {
+    console.error("Preview failed", error);
+    alert("Failed to load preview");
+  }
 };
 
 window.downloadNote = function (noteId) {
@@ -353,3 +365,4 @@ window.addEventListener("load", () => {
   // 🔥 ALSO CHECK ON LOAD
   checkScroll();
 });
+
