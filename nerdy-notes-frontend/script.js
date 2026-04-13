@@ -1,3 +1,5 @@
+console.log("FILE URL:", note.fileUrl);
+
 // Frontend script.js
 
 document.addEventListener("DOMContentLoaded", () => {
