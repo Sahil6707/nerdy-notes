@@ -153,6 +153,27 @@ router.delete("/:id", authMiddleware, async (req, res) => {
 const https = require("https");
 
 
+router.get("/preview/:id", async (req, res) => {
+  try {
+    const note = await Note.findById(req.params.id);
+
+    if (!note) {
+      return res.status(404).send("Note not found");
+    }
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", "inline");
+
+    https.get(note.fileUrl, (response) => {
+      response.pipe(res);
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error loading PDF");
+  }
+});
+
 router.get("/download/:id", async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
@@ -177,36 +198,6 @@ router.get("/download/:id", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
-  }
-});
-
-router.get("/preview/:id", async (req, res) => {
-  try {
-    const note = await Note.findById(req.params.id);
-
-    if (!note) {
-      return res.status(404).json({ error: "Note not found" });
-    }
-
-    // Extract file path from URL
-    const urlParts = note.fileUrl.split("/");
-const fileName = urlParts[urlParts.length - 1];
-
-
-    const { data, error } = await supabase.storage
-      .from("notes")
-      .createSignedUrl(fileName, 60);
-
-    if (error) {
-      console.error(error);
-      return res.status(500).json({ error: "Failed to generate preview" });
-    }
-
-    res.json({ url: data.signedUrl });
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server error" });
   }
 });
 

@@ -24,19 +24,13 @@
   <body>
     <iframe id="pdfViewer"></iframe>
     <script>
-const params = new URLSearchParams(window.location.search);
-const url = params.get("url");
+    const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
 
-const viewer = document.getElementById("pdfViewer");
+if (id) {
+  const url = `https://nerdy-notes-backend.onrender.com/api/notes/preview/${id}`;
 
-if (url && viewer) {
-  viewer.src = url + "#toolbar=0";
-} else {
-  document.body.innerHTML = `
-    <div style="color:white; text-align:center; margin-top:50px;">
-      Failed to load preview
-    </div>
-  `;
+  document.getElementById("pdfViewer").src = url + "#toolbar=0";
 }
   // Disable right click
 document.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -53,7 +47,6 @@ document.addEventListener("keydown", (e) => {
 
 // Block text selection
 document.addEventListener("selectstart", (e) => e.preventDefault());
-console.log("🔥 NEW PREVIEW ROUTE ACTIVE");
     </script>
   </body>
 </html>

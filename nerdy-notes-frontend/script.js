@@ -111,97 +111,57 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
 
-async function loadNotes() {
-  const container = document.getElementById("notes-container");
-  if (!container) return;
 
-  // ✅ STEP 1: SHOW LOADING IMMEDIATELY
- container.innerHTML = `
-  <div class="skeleton-container">
-    ${Array(6).fill().map(() => `
-      <div class="skeleton-card">
-        <div class="skeleton-title"></div>
-        <div class="skeleton-text"></div>
-        <div class="skeleton-btn"></div>
-      </div>
-    `).join("")}
-  </div>
-`;
+async function loadNotes() {
   try {
     const subject = document.body.dataset.subject;
 
-    const res = await fetch(
-      `https://nerdy-notes-backend.onrender.com/api/notes?subject=${subject}`
-    );
-
+  const res = await fetch(
+  `https://nerdy-notes-backend.onrender.com/api/notes?subject=${subject}`
+);
     const notes = await res.json();
-
-    // ✅ STEP 2: CLEAR LOADING
+    const container = document.getElementById("notes-container");
+    if (!container) return;
     container.innerHTML = "";
 
-    // ✅ STEP 3: SHOW NOTES
-    notes.forEach((note) => {
+  notes.forEach((note) => {
+
   const card = document.createElement("div");
   card.classList.add("note-card");
 
+  const token = localStorage.getItem("token");
+
  card.innerHTML = `
-  <div class="note-content">
-    <h3 class="note-title">${note.title}</h3>
-    <p class="note-sub">${note.subject} • Module ${note.module}</p>
-  </div>
+<h3>${note.title}</h3>
+<p>${note.subject}</p>
 
-  <div class="note-actions">
-    <a class="preview-btn" href="javascript:void(0)" onclick="window.previewNote('${note._id}')">
-      Preview
-    </a>
+<div class="note-actions">
 
-    ${
-      note.isPremium
-        ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
-        : `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
-            Download
-          </a>`
-    }
-  </div>
+<a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">
+  Preview
+</a>
+
+${
+  note.isPremium
+    ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
+    : `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
+        Download
+      </a>`
+}
+
+</div>
 `;
 
   container.appendChild(card);
+
 });
-
-// 👇 ADD THIS HERE (IMPORTANT POSITION)
-container.style.opacity = 0;
-
-setTimeout(() => {
-  container.style.transition = "opacity 0.4s ease";
-  container.style.opacity = 1;
-}, 50);
-
   } catch (error) {
     console.error("Failed to load notes", error);
-
-    container.innerHTML = `
-      <div style="padding:20px; text-align:center; color:red;">
-        Failed to load notes. Try again.
-      </div>
-    `;
   }
 }
 
-
-window.previewNote = async function (noteId) {
-  try {
-    const res = await fetch(
-      `https://nerdy-notes-backend.onrender.com/api/notes/preview/${noteId}`
-    );
-
-    const data = await res.json();
-
-    window.location.href = `/subjects/preview.html?url=${encodeURIComponent(data.url)}`;
-
-  } catch (error) {
-    console.error("Preview failed", error);
-    alert("Failed to load preview");
-  }
+window.previewNote = function (noteId) {
+  window.open(`/preview.html?id=${noteId}`, "_blank");
 };
 
 window.downloadNote = function (noteId) {
@@ -365,4 +325,3 @@ window.addEventListener("load", () => {
   // 🔥 ALSO CHECK ON LOAD
   checkScroll();
 });
-
