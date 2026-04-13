@@ -141,32 +141,25 @@ async function loadNotes() {
 
     // ✅ STEP 3: SHOW NOTES
     notes.forEach((note) => {
-      const card = document.createElement("div");
-      card.classList.add("note-card");
+  const card = document.createElement("div");
+  card.classList.add("note-card");
 
-      card.innerHTML = `
-        <h3>${note.title}</h3>
-        <p>${note.subject}</p>
+  card.innerHTML = `
+    <h3>${note.title}</h3>
+    <p>${note.subject}</p>
+    ...
+  `;
 
-        <div class="note-actions">
+  container.appendChild(card);
+});
 
-        <a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">
-          Preview
-        </a>
+// 👇 ADD THIS HERE (IMPORTANT POSITION)
+container.style.opacity = 0;
 
-        ${
-          note.isPremium
-            ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
-            : `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
-                Download
-              </a>`
-        }
-
-        </div>
-      `;
-
-      container.appendChild(card);
-    });
+setTimeout(() => {
+  container.style.transition = "opacity 0.4s ease";
+  container.style.opacity = 1;
+}, 50);
 
   } catch (error) {
     console.error("Failed to load notes", error);

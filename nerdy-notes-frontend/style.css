@@ -2832,11 +2832,56 @@ body.light-mode .footer-bottom {
   width: 40%;
 }
 
-.skeleton-btn {
-  height: 30px;
-  width: 100px;
+/* Dark Skeleton Loading (Nerdy Notes Theme) */
+
+.skeleton-container {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
 }
 
+.skeleton-card {
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Shimmer elements */
+.skeleton-title,
+.skeleton-text,
+.skeleton-btn {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.05) 25%,
+    rgba(255,255,255,0.12) 50%,
+    rgba(255,255,255,0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite ease-in-out;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* Sizes matching your real UI */
+.skeleton-title {
+  height: 18px;
+  width: 65%;
+}
+
+.skeleton-text {
+  height: 14px;
+  width: 45%;
+}
+
+.skeleton-btn {
+  height: 32px;
+  width: 110px;
+  border-radius: 8px;
+}
+
+/* Animation */
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
