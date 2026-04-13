@@ -113,48 +113,50 @@ window.addEventListener("load", revealOnScroll);
 
 
 async function loadNotes() {
-  const container = document.getElementById("notesContainer");
-
-  // ✅ STEP 1: Show loading instantly
-  container.innerHTML = `
-    <div style="text-align:center; padding:40px; color:white;">
-      <h2>Loading notes...</h2>
-    </div>
-  `;
-
   try {
-    const res = await fetch(
-      `https://nerdy-notes-backend.onrender.com/api/notes?subject=${subject}`
-    );
+    const subject = document.body.dataset.subject;
 
+  const res = await fetch(
+  `https://nerdy-notes-backend.onrender.com/api/notes?subject=${subject}`
+);
     const notes = await res.json();
-
-    // ✅ STEP 2: Clear container
+    const container = document.getElementById("notes-container");
+    if (!container) return;
     container.innerHTML = "";
 
-    // ✅ STEP 3: Render notes
-    notes.forEach((note) => {
-      const card = document.createElement("div");
-      card.classList.add("note-card");
+  notes.forEach((note) => {
 
-      card.innerHTML = `
-        <h3>${note.title}</h3>
-        <p>${note.subject}</p>
+  const card = document.createElement("div");
+  card.classList.add("note-card");
 
-        <button onclick="previewNote('${note._id}')">Preview</button>
-      `;
+  const token = localStorage.getItem("token");
 
-      container.appendChild(card);
-    });
+ card.innerHTML = `
+<h3>${note.title}</h3>
+<p>${note.subject}</p>
 
+<div class="note-actions">
+
+<a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}', '${note.fileUrl}')">
+  Preview
+</a>
+
+${
+  note.isPremium
+    ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
+    : `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
+        Download
+      </a>`
+}
+
+</div>
+`;
+
+  container.appendChild(card);
+
+});
   } catch (error) {
-    console.error(error);
-
-    container.innerHTML = `
-      <div style="text-align:center; color:red;">
-        Failed to load notes
-      </div>
-    `;
+    console.error("Failed to load notes", error);
   }
 }
 
