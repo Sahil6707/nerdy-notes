@@ -110,55 +110,82 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
-
-
 async function loadNotes() {
+  const container = document.getElementById("notes-container");
+  if (!container) return;
+
+  // ✅ STEP 1: SHOW LOADING IMMEDIATELY
+  container.innerHTML = `
+    <div style="padding:20px; text-align:center;">
+      <h2>Loading notes...</h2>
+    </div>
+  `;
+
   try {
     const subject = document.body.dataset.subject;
 
-  const res = await fetch(
-  `https://nerdy-notes-backend.onrender.com/api/notes?subject=${subject}`
-);
+    const res = await fetch(
+      `https://nerdy-notes-backend.onrender.com/api/notes?subject=${subject}`
+    );
+
     const notes = await res.json();
-    const container = document.getElementById("notes-container");
-    if (!container) return;
+
+    // ✅ STEP 2: CLEAR LOADING
     container.innerHTML = "";
 
-  notes.forEach((note) => {
+    // ✅ STEP 3: SHOW NOTES
+    notes.forEach((note) => {
+      const card = document.createElement("div");
+      card.classList.add("note-card");
 
-  const card = document.createElement("div");
-  card.classList.add("note-card");
+      card.innerHTML = `
+        <h3>${note.title}</h3>
+        <p>${note.subject}</p>
 
-  const token = localStorage.getItem("token");
+        <div class="note-actions">
 
- card.innerHTML = `
-<h3>${note.title}</h3>
-<p>${note.subject}</p>
+        <a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}')">
+          Preview
+        </a>
 
-<div class="note-actions">
+        ${
+          note.isPremium
+            ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
+            : `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
+                Download
+              </a>`
+        }
 
-<a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}', '${note.fileUrl}')">
-  Preview
-</a>
+        </div>
+      `;
 
-${
-  note.isPremium
-    ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
-    : `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
-        Download
-      </a>`
-}
+      container.appendChild(card);
+    });
 
-</div>
-`;
+    container.style.opacity = 0;
 
-  container.appendChild(card);
+setTimeout(() => {
+  container.style.transition = "opacity 0.4s ease";
+  container.style.opacity = 1;
+}, 50);
 
-});
   } catch (error) {
     console.error("Failed to load notes", error);
+
+    container.innerHTML = `
+  <div class="skeleton-container">
+    ${Array(6).fill().map(() => `
+      <div class="skeleton-card">
+        <div class="skeleton-title"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-btn"></div>
+      </div>
+    `).join("")}
+  </div>
+`;
   }
 }
+
 
 window.previewNote = function (noteId, fileUrl) {
   window.open(fileUrl, "_blank");
