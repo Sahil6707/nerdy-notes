@@ -133,13 +133,13 @@ async function loadNotes() {
     container.innerHTML = "";
 
     if (notes.length === 0) {
-  container.innerHTML = `
-    <div class="empty-state">
-      <h3>📭 No notes yet</h3>
-      <p>Uploading soon...</p>
-    </div>
-  `;
-
+ container.innerHTML = `
+  <div class="empty-state">
+    <div class="empty-icon">📭</div>
+    <h2>No notes yet</h2>
+    <p>We're preparing content for you.<br>Check back soon 🚀</p>
+  </div>
+`;
   loader.style.display = "none";
   container.style.display = "block";
   return;
