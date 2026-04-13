@@ -2853,3 +2853,20 @@ body.light-mode .footer-bottom {
     transform: rotate(360deg);
   }
 }
+
+.empty-state {
+  text-align: center;
+  margin-top: 80px;
+  color: #cbd5e1;
+  font-family: 'Inter', sans-serif;
+}
+
+.empty-state h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  font-size: 15px;
+  opacity: 0.8;
+}
