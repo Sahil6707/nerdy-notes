@@ -196,7 +196,7 @@ window.previewNote = async function (noteId) {
 
     const data = await res.json();
 
-    window.open(`preview.html?url=${encodeURIComponent(data.url)}`, "_blank");
+    window.location.href = `/subjects/preview.html?url=${encodeURIComponent(data.url)}`;
 
   } catch (error) {
     console.error("Preview failed", error);
