@@ -195,7 +195,7 @@ const fileName = urlParts[urlParts.length - 1];
 
     const { data, error } = await supabase.storage
       .from("notes")
-      .createSignedUrl(filePath, 60);
+      .createSignedUrl(fileName, 60);
 
     if (error) {
       console.error(error);
