@@ -1,5 +1,3 @@
-console.log("FILE URL:", note.fileUrl);
-
 // Frontend script.js
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -143,6 +141,7 @@ async function loadNotes() {
 
     // ✅ STEP 3: SHOW NOTES
     notes.forEach((note) => {
+      console.log("FILE URL = ", note.fileUrl);
   const card = document.createElement("div");
   card.classList.add("note-card");
 
