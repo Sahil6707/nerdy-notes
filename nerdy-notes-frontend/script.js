@@ -132,9 +132,25 @@ async function loadNotes() {
     // clear container
     container.innerHTML = "";
 
-    notes.forEach((note) => {
+    if (notes.length === 0) {
+  container.innerHTML = `
+    <div class="empty-state">
+      <h3>📭 No notes yet</h3>
+      <p>Uploading soon...</p>
+    </div>
+  `;
+
+  loader.style.display = "none";
+  container.style.display = "block";
+  return;
+}
+
+    notes.forEach((note, index) => {
       const card = document.createElement("div");
       card.classList.add("note-card");
+
+       // ✅ ADD THIS LINE HERE
+  card.style.animationDelay = `${index * 0.1}s`;
 
       card.innerHTML = `
         <h3>${note.title}</h3>
