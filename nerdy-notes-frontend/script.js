@@ -113,50 +113,48 @@ window.addEventListener("load", revealOnScroll);
 
 
 async function loadNotes() {
-  try {
-    const subject = document.body.dataset.subject;
+  const container = document.getElementById("notesContainer");
 
-  const res = await fetch(
-  `https://nerdy-notes-backend.onrender.com/api/notes?subject=${subject}`
-);
+  // ✅ STEP 1: Show loading instantly
+  container.innerHTML = `
+    <div style="text-align:center; padding:40px; color:white;">
+      <h2>Loading notes...</h2>
+    </div>
+  `;
+
+  try {
+    const res = await fetch(
+      `https://nerdy-notes-backend.onrender.com/api/notes?subject=${subject}`
+    );
+
     const notes = await res.json();
-    const container = document.getElementById("notes-container");
-    if (!container) return;
+
+    // ✅ STEP 2: Clear container
     container.innerHTML = "";
 
-  notes.forEach((note) => {
+    // ✅ STEP 3: Render notes
+    notes.forEach((note) => {
+      const card = document.createElement("div");
+      card.classList.add("note-card");
 
-  const card = document.createElement("div");
-  card.classList.add("note-card");
+      card.innerHTML = `
+        <h3>${note.title}</h3>
+        <p>${note.subject}</p>
 
-  const token = localStorage.getItem("token");
+        <button onclick="previewNote('${note._id}')">Preview</button>
+      `;
 
- card.innerHTML = `
-<h3>${note.title}</h3>
-<p>${note.subject}</p>
+      container.appendChild(card);
+    });
 
-<div class="note-actions">
-
-<a class="preview-btn" href="javascript:void(0)" onclick="previewNote('${note._id}', '${note.fileUrl}')">
-  Preview
-</a>
-
-${
-  note.isPremium
-    ? `<a class="download-btn" href="premium.html">Buy ₹19</a>`
-    : `<a class="download-btn" href="javascript:void(0)" onclick="downloadNote('${note._id}')">
-        Download
-      </a>`
-}
-
-</div>
-`;
-
-  container.appendChild(card);
-
-});
   } catch (error) {
-    console.error("Failed to load notes", error);
+    console.error(error);
+
+    container.innerHTML = `
+      <div style="text-align:center; color:red;">
+        Failed to load notes
+      </div>
+    `;
   }
 }
 
