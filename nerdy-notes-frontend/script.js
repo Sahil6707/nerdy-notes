@@ -116,12 +116,17 @@ async function loadNotes() {
   if (!container) return;
 
   // ✅ STEP 1: SHOW LOADING IMMEDIATELY
-  container.innerHTML = `
-    <div style="padding:20px; text-align:center;">
-      <h2>Loading notes...</h2>
-    </div>
-  `;
-
+ container.innerHTML = `
+  <div class="skeleton-container">
+    ${Array(6).fill().map(() => `
+      <div class="skeleton-card">
+        <div class="skeleton-title"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-btn"></div>
+      </div>
+    `).join("")}
+  </div>
+`;
   try {
     const subject = document.body.dataset.subject;
 

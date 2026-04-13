@@ -2794,3 +2794,54 @@ body.light-mode .footer-bottom {
   text-decoration: none;
 }
 
+/* Skeleton Loading */
+.skeleton-container {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+}
+
+.skeleton-card {
+  padding: 15px;
+  border-radius: 10px;
+  background: #f0f0f0;
+}
+
+.skeleton-title,
+.skeleton-text,
+.skeleton-btn {
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f5f5f5 50%,
+    #e0e0e0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.skeleton-title {
+  height: 20px;
+  width: 60%;
+}
+
+.skeleton-text {
+  height: 15px;
+  width: 40%;
+}
+
+.skeleton-btn {
+  height: 30px;
+  width: 100px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
