@@ -189,11 +189,13 @@ router.get("/preview/:id", async (req, res) => {
     }
 
     // Extract file path from URL
-    const filePath = note.fileUrl.split("/storage/v1/object/public/notes/")[1];
+    const urlParts = note.fileUrl.split("/");
+const fileName = urlParts[urlParts.length - 1];
+
 
     const { data, error } = await supabase.storage
       .from("notes")
-      .createSignedUrl(filePath, 60); // 60 sec
+      .createSignedUrl(filePath, 60);
 
     if (error) {
       console.error(error);
