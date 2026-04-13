@@ -162,12 +162,7 @@ async function loadNotes() {
       container.appendChild(card);
     });
 
-    container.style.opacity = 0;
-
-setTimeout(() => {
-  container.style.transition = "opacity 0.4s ease";
-  container.style.opacity = 1;
-}, 50);
+    
 
   } catch (error) {
     console.error("Failed to load notes", error);
