@@ -189,7 +189,7 @@ router.get("/preview/:id", async (req, res) => {
     }
 
     // Extract file path from URL
-    const filePath = note.fileUrl.split("/object/public/notes/")[1];
+    const filePath = note.fileUrl.split("/storage/v1/object/public/notes/")[1];
 
     const { data, error } = await supabase.storage
       .from("notes")
