@@ -17,7 +17,9 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "https://www.nerdynotes.in"
+}));
 app.use(express.json());
 
 // Static folder
