@@ -121,7 +121,7 @@ async function loadNotes() {
   if (!container || !loader) return;
 
   // ✅ STEP 1: SHOW LOADER
-  loader.style.display = "flex";
+  loader.style.display = "block";
   container.style.display = "none";
 
   try {
