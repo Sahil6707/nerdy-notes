@@ -2882,3 +2882,55 @@ body.light-mode .footer-bottom {
   color: #94a3b8;
   line-height: 1.6;
 }
+
+/* premium section css */
+
+.premium-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a;
+}
+
+.premium-box {
+  text-align: center;
+  padding: 40px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+}
+
+.premium-box h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.coming-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #00d4ff;
+  color: black;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.features p {
+  margin: 8px 0;
+  color: #cbd5e1;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #00d4ff;
+  font-weight: 500;
+}
