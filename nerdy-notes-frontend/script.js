@@ -140,8 +140,13 @@ async function loadNotes() {
     <p>We're preparing content for you.<br>Check back soon 🚀</p>
   </div>
 `;
+ // show container first
+container.style.display = "block";
+
+// wait for DOM render (IMPORTANT)
+requestAnimationFrame(() => {
   loader.style.display = "none";
-  container.style.display = "block";
+});
   return;
 }
 
