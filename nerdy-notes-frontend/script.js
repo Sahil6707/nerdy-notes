@@ -110,6 +110,10 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
+// 🔥 Wake up backend (Render cold start fix)
+fetch("https://nerdy-notes-backend.onrender.com/api/notes/hello")
+  .catch(() => {}); // ignore errors
+
 async function loadNotes() {
   const container = document.getElementById("notes-container");
   const loader = document.getElementById("loader");
@@ -117,7 +121,7 @@ async function loadNotes() {
   if (!container || !loader) return;
 
   // ✅ STEP 1: SHOW LOADER
-  loader.style.display = "block";
+  loader.style.display = "flex";
   container.style.display = "none";
 
   try {
@@ -140,13 +144,11 @@ async function loadNotes() {
     <p>We're preparing content for you.<br>Check back soon 🚀</p>
   </div>
 `;
- // show container first
 container.style.display = "block";
 
-// wait for DOM render (IMPORTANT)
-requestAnimationFrame(() => {
+setTimeout(() => {
   loader.style.display = "none";
-});
+}, 200);
   return;
 }
 
@@ -180,8 +182,11 @@ requestAnimationFrame(() => {
     });
 
     // ✅ STEP 2: HIDE LOADER + SHOW NOTES
-    loader.style.display = "none";
     container.style.display = "block";
+
+setTimeout(() => {
+  loader.style.display = "none";
+}, 200);
 
   } catch (error) {
     console.error("Failed to load notes", error);
@@ -282,26 +287,6 @@ window.addEventListener("load", () => {
 
 });
 
-const startTime = Date.now();
-
-window.addEventListener("load", () => {
-  const loader = document.getElementById("loader");
-
-  if (!loader) return; // 🔥 THIS FIXES EVERYTHING
-
-  const elapsed = Date.now() - startTime;
-  const minTime = 600;
-
-  const delay = Math.max(minTime - elapsed, 0);
-
-  setTimeout(() => {
-    loader.style.opacity = "0";
-
-    setTimeout(() => {
-      loader.style.display = "none";
-    }, 300);
-  }, delay);
-});
 
 // ===== FINAL WORKING STATS =====
 
